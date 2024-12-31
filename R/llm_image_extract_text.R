@@ -7,27 +7,35 @@
 #' @return a df with text
 #' @export
 llm_image_extract_text <- \(llm_model = "llava-phi3",
-                           image = "inst/img/text_img.jpg",
+                           image = system.file("img/text_img.jpg", package = "kuzco"),
                            ...){
 
   system_prompt <- base::readLines(paste0(.libPaths()[1], "/kuzco/prompts/system-prompt-extraction.md")) |> paste(collapse = "\n")
   image_prompt  <- base::readLines(paste0(.libPaths()[1], "/kuzco/prompts/image-prompt.md"))  |> paste(collapse = "\n")
+
+  json_format <- list(
+    type = "object",
+    properties = list(
+      text = list(type = "string")
+    ),
+    required = list("text")
+  )
 
   llm_json <- ollamar::generate(
     model  = llm_model,
     prompt = image_prompt,
     images = image,
     system = system_prompt,
-    output = "text",
+    output = "structured",
+    format = json_format,
     ...
   )
 
-  llm_parsed <- llm_json |>
-    jsonlite::parse_json()
+  # llm_parsed <- llm_json |>
+  #   jsonlite::parse_json()
 
-  llm_df <- llm_parsed |>
-    as.data.frame() |>
-    dplyr::select("text" = dplyr::contains("text"))
+  llm_df <- llm_json |>
+    as.data.frame()
 
   return(llm_df)
 

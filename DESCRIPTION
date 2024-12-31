@@ -1,6 +1,6 @@
 Package: kuzco
 Title: LLM image classification using ollama in R
-Version: 0.0.1.0
+Version: 0.1.2.1
 Authors@R: c(
     person("Frank", "Hull", , "frankiethull@gmail.com", role = c("aut", "cre")),
     person("Johannes", "Breuer", , "johannes.breuer@gesis.org", role = c("ctb"), comment = c(ORCID = "0000-0001-5906-7873"))
