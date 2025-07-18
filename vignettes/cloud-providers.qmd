@@ -99,7 +99,6 @@ chat_providers <- data.frame(
     "ellmer::chat_claude",
     "ellmer::chat_cloudflare",
     "ellmer::chat_cortex",
-    "ellmer::chat_cortex_analyst",
     "ellmer::chat_databricks",
     "ellmer::chat_deepseek",
     "ellmer::chat_gemini",

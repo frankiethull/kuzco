@@ -20,7 +20,6 @@ chat_ellmer <- \(provider = "ollama"){
     "claude"           = ellmer::chat_claude,
     "cloudfare"        = ellmer::chat_cloudflare,
     "cortex"           = ellmer::chat_cortex,
-    "cortex_analyst"   = ellmer::chat_cortex_analyst,
     "databricks"       = ellmer::chat_databricks,
     "deepseek"         = ellmer::chat_deepseek,
     "gemini"           = ellmer::chat_gemini,
