@@ -49,6 +49,7 @@
 <span>  backend <span class="op">=</span> <span class="st">"ellmer"</span>,</span>
 <span>  additional_prompt <span class="op">=</span> <span class="st">""</span>,</span>
 <span>  provider <span class="op">=</span> <span class="st">"ollama"</span>,</span>
+<span>  language <span class="op">=</span> <span class="st">"English"</span>,</span>
 <span>  <span class="va">...</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
@@ -58,7 +59,7 @@
 
 
 <dl><dt id="arg-llm-model">llm_model<a class="anchor" aria-label="anchor" href="#arg-llm-model"></a></dt>
-<dd><p>a local LLM model pulled from ollama</p></dd>
+<dd><p>a local LLM model either pulled from ollama or hosted</p></dd>
 
 
 <dt id="arg-image">image<a class="anchor" aria-label="anchor" href="#arg-image"></a></dt>
@@ -77,6 +78,10 @@
 <dd><p>for <code>backend = 'ollamar'</code>, <code>provider</code> is ignored. for <code>backend = 'ellmer'</code>,
 <code>provider</code> refers to the <code>ellmer::chat_*</code> providers and can be used to switch
 from "ollama" to other providers such as "perplexity"</p></dd>
+
+
+<dt id="arg-language">language<a class="anchor" aria-label="anchor" href="#arg-language"></a></dt>
+<dd><p>a language to guide the LLM model outputs</p></dd>
 
 
 <dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
