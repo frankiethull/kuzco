@@ -14,10 +14,10 @@
 #' @return a customized return based on example_df for custom control
 #' @export
 llm_image_custom <- \(
-  llm_model = "qwen2.5vl",
-  image = system.file("img/test_img.jpg", package = "kuzco"),
-  backend = "ellmer",
-  system_prompt = "You are a terse assistant specializing in computer vision image sentiment.
+	llm_model = "qwen2.5vl",
+	image = system.file("img/test_img.jpg", package = "kuzco"),
+	backend = "ellmer",
+	system_prompt = "You are a terse assistant specializing in computer vision image sentiment.
                    You are short and to the point. You only respond if the user supplies an image.
                    You will observe the image and return JSON specific answers.
                    Return as JSON
@@ -25,142 +25,144 @@ llm_image_custom <- \(
                    Do not return NULL, all fields must be complete.
                    Do not return the exact examples given but fill out the template,
                    supply your own new original answer every time. ",
-  image_prompt = "please return JSON for image according to the example format supplied",
-  example_df = data.frame(
-    image_sentiment       = "positive",
-    image_score           = .6,
-    sentiment_description = "image envokes a positive emotional response."
-    ),
-  provider = "ollama",
-  ...
+	image_prompt = "please return JSON for image according to the example format supplied",
+	example_df = NULL,
+	provider = "ollama",
+	...
 ) {
+	system_prompt <- system_prompt
+	image_prompt <- image_prompt
 
-  system_prompt <- system_prompt
-  image_prompt  <- image_prompt
+	if (!is.null(example_df) && inherits(example_df, "data.frame")) {
+		example_json <- jsonlite::toJSON(example_df) |> jsonlite::prettify()
+		system_prompt <- paste0(system_prompt, '\n', "example given:", "\n", example_json) # |> cat()
+	}
 
-  example_json <- jsonlite::toJSON(example_df) |> jsonlite::prettify()
-
-  system_prompt <- paste0(system_prompt, '\n', "example given:", "\n", example_json) # |> cat()
-
-
-  if (backend == 'ollamar') {
-    kuzco:::ollamar_image_custom(
-      llm_model = llm_model,
-      image_prompt = image_prompt,
-      image = image,
-      system_prompt = system_prompt,
-      ...
-    )
-  } else if (backend == 'ellmer') {
-    kuzco:::ellmer_image_custom(
-      llm_model = llm_model,
-      image_prompt = image_prompt,
-      image = image,
-      system_prompt = system_prompt,
-      example_df  = example_df,
-      provider = provider,
-      ...
-    )
-  } else {
-    print('incorrect backend selection')
-  }
+	if (backend == 'ollamar') {
+		kuzco:::ollamar_image_custom(
+			llm_model = llm_model,
+			image_prompt = image_prompt,
+			image = image,
+			system_prompt = system_prompt,
+			...
+		)
+	} else if (backend == 'ellmer') {
+		kuzco:::ellmer_image_custom(
+			llm_model = llm_model,
+			image_prompt = image_prompt,
+			image = image,
+			system_prompt = system_prompt,
+			example_df = example_df,
+			provider = provider,
+			...
+		)
+	} else {
+		print('incorrect backend selection')
+	}
 }
 
 # implementations ---------------------------------------------------
 
 ollamar_image_custom <- \(
-  llm_model = llm_model,
-  image_prompt = image_prompt,
-  image = image,
-  system_prompt = system_prompt,
-  ...
+	llm_model = llm_model,
+	image_prompt = image_prompt,
+	image = image,
+	system_prompt = system_prompt,
+	...
 ) {
-  llm_json <- ollamar::generate(
-    model = llm_model,
-    prompt = image_prompt,
-    images = image,
-    system = system_prompt,
-    output = "text",
-    ...
-  )
+	llm_json <- ollamar::generate(
+		model = llm_model,
+		prompt = image_prompt,
+		images = image,
+		system = system_prompt,
+		output = "text",
+		...
+	)
 
-  llm_parsed <- llm_json |>
-    jsonlite::parse_json()
+	llm_parsed <- llm_json |>
+		jsonlite::parse_json()
 
-  llm_df <- llm_parsed |>
-    as.data.frame()
+	llm_df <- llm_parsed |>
+		as.data.frame()
 
-  return(llm_df)
+	return(llm_df)
 }
 
 ellmer_image_custom <- \(
-  llm_model = llm_model,
-  image_prompt = image_prompt,
-  image = image,
-  system_prompt = system_prompt,
-  example_df = example_df,
-  provider = provider,
-  ...
+	llm_model = llm_model,
+	image_prompt = image_prompt,
+	image = image,
+	system_prompt = system_prompt,
+	example_df = example_df,
+	provider = provider,
+	...
 ) {
+	chat_provider <- chat_ellmer(provider = provider)
 
-  chat_provider <- chat_ellmer(provider = provider)
+	chat <- chat_provider(
+		model = llm_model,
+		system_prompt = system_prompt,
+		...
+	)
+	if (!is.null(example_df) && inherits(example_df, "data.frame")) {
+		# @@@@ dynamic custom schema struct @@@@ -----
+		# columns and types ~
+		cols_and_types <- sapply(example_df, class)
+		col_names <- cols_and_types |> names()
+		# json hacks ---
+		# schema header ~
+		prefix_schema <- paste0(
+			'{
+		"type": "object",
+		"description": "",
+		"properties": {'
+		)
+		# schema footer ~
+		suffix_schema <- paste0(
+			'
+		},
+		"required":',
+			col_names |> jsonlite::toJSON(),
+			',
+		"additionalProperties": false
+		}'
+		)
+		# dynamically write cols + types ~
+		middle_schema <- ""
+		for (i in 1:length(cols_and_types)) {
+			col_name <- col_names[[i]]
+			#TODO, case_when for many types (?)
+			col_type <- ifelse(cols_and_types[[i]] == "character", "string", "number")
 
-  chat <- chat_provider(
-    model = llm_model,
-    system_prompt = system_prompt,
-    ...
-  )
-# @@@@ dynamic custom schema struct @@@@ -----
-# columns and types ~
-  cols_and_types <- sapply(example_df, class)
-  col_names <- cols_and_types |> names()
+			middle_schema <-
+				paste0(
+					middle_schema,
+					'"',
+					col_name,
+					'": {',
+					'"type": "',
+					col_type,
+					'",',
+					'"description": ""
+				},'
+				)
+		}
+		middle_schema <- sub(",$", "", middle_schema)
+		customized_schema <- paste0(prefix_schema, middle_schema, suffix_schema)
+		# issues arraying types from type schema,
+		# will return a list from ellmer and convert to df.
+		type_customized_schema <- ellmer::type_from_schema(customized_schema)
+	} else {
+		type_customized_schema <- ellmer::type_object(reply = ellmer::type_string())
+	}
 
-  # json hacks ---
-# schema header ~
-prefix_schema <- paste0('
-{
-  "type": "object",
-  "description": "",
-  "properties": {')
+	llm_list <- chat$chat_structured(
+		image_prompt,
+		ellmer::content_image_file(image),
+		type = type_customized_schema
+	)
 
-# schema footer ~
-suffix_schema <- paste0('
-  },
-  "required":', col_names |> jsonlite::toJSON(),',
-  "additionalProperties": false
-}')
+	llm_df <- llm_list |> list2DF()
 
-# dynamically write cols + types ~
-middle_schema <- ""
-for(i in 1:length(cols_and_types)){
-    col_name <- col_names[[i]]
-    #TODO, case_when for many types (?)
-    col_type <- ifelse(cols_and_types[[i]] == "character", "string", "number")
-
-middle_schema <-
-  paste0(middle_schema,
-      '"', col_name, '": {',
-      '"type": "', col_type, '",',
-      '"description": ""
-       },')
-
-}
-
-middle_schema <- sub(",$", "", middle_schema)
-
-customized_schema <- paste0(prefix_schema, middle_schema, suffix_schema)
-
-# issues arraying types from type schema,
-# will return a list from ellmer and convert to df.
-type_customized_schema <- ellmer::type_from_schema(customized_schema)
-
-  llm_list <- chat$chat_structured(
-    image_prompt,
-    ellmer::content_image_file(image),
-    type = type_customized_schema
-  )
-
-  llm_df <- llm_list |> list2DF()
-
-  return(llm_df)
+	return(llm_df)
 }
