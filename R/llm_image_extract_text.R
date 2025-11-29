@@ -26,14 +26,13 @@ llm_image_extract_text <- \(
 	image_prompt <- paste0(additional_prompt, image_prompt)
 
 	image_prompt <- base::gsub(
-	  pattern = "[INPUT_LANGUAGE]",
-	  replacement = language,
-	  x = image_prompt
+		pattern = "[INPUT_LANGUAGE]",
+		replacement = language,
+		x = image_prompt
 	)
 
-
 	if (backend == 'ollamar') {
-		kuzco:::ollamar_image_extract_text(
+		ollamar_image_extract_text(
 			llm_model = llm_model,
 			image_prompt = image_prompt,
 			image = image,
@@ -41,7 +40,7 @@ llm_image_extract_text <- \(
 			...
 		)
 	} else if (backend == 'ellmer') {
-		kuzco:::ellmer_image_extract_text(
+		ellmer_image_extract_text(
 			llm_model = llm_model,
 			image_prompt = image_prompt,
 			image = image,
@@ -76,22 +75,22 @@ ollamar_image_extract_text <- \(
 
 	llm_df <- llm_parsed |>
 		as.data.frame() |>
-		dplyr::select("text" = dplyr::contains("text"),
-		              "confidence_score" = dplyr::contains("confiden"))
+		dplyr::select("text" = dplyr::contains("text"), "confidence_score" = dplyr::contains("confiden"))
 
 	return(llm_df)
 }
 
-ellmer_image_extract_text <- \(llm_model = llm_model,
-                               image_prompt = image_prompt,
-                               image = image,
-                               system_prompt = system_prompt,
-                               provider = provider,
-                               ...) {
+ellmer_image_extract_text <- \(
+	llm_model = llm_model,
+	image_prompt = image_prompt,
+	image = image,
+	system_prompt = system_prompt,
+	provider = provider,
+	...
+) {
+	chat_provider <- chat_ellmer(provider = provider)
 
-  chat_provider <- chat_ellmer(provider = provider)
-
-  chat <- chat_provider(
+	chat <- chat_provider(
 		model = llm_model,
 		system_prompt = system_prompt,
 		...
