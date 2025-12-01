@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">kuzco</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.4.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.5.9000</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -49,11 +49,9 @@
 <span>  llm_model <span class="op">=</span> <span class="st">"qwen2.5vl"</span>,</span>
 <span>  image <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"img/test_img.jpg"</span>, package <span class="op">=</span> <span class="st">"kuzco"</span><span class="op">)</span>,</span>
 <span>  backend <span class="op">=</span> <span class="st">"ellmer"</span>,</span>
-<span>  system_prompt <span class="op">=</span></span>
-<span>    <span class="st">"You are a terse assistant specializing in computer vision image sentiment.\n                   You are short and to the point. You only respond if the user supplies an image.\n                   You will observe the image and return JSON specific answers.\n                   Return as JSON\n                   Do not include backticks or 'json' within your answer but purely the json.\n                   Do not return NULL, all fields must be complete.\n                   Do not return the exact examples given but fill out the template,\n                   supply your own new original answer every time. "</span>,</span>
-<span>  image_prompt <span class="op">=</span> <span class="st">"please return JSON for image according to the example format supplied"</span>,</span>
-<span>  example_df <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>image_sentiment <span class="op">=</span> <span class="st">"positive"</span>, image_score <span class="op">=</span> <span class="fl">0.6</span>,</span>
-<span>    sentiment_description <span class="op">=</span> <span class="st">"image envokes a positive emotional response."</span><span class="op">)</span>,</span>
+<span>  system_prompt <span class="op">=</span> <span class="st">"You are a terse assistant in computer vision sentiment."</span>,</span>
+<span>  image_prompt <span class="op">=</span> <span class="st">"return JSON describing image, do not include json or backticks"</span>,</span>
+<span>  example_df <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  provider <span class="op">=</span> <span class="st">"ollama"</span>,</span>
 <span>  <span class="va">...</span></span>
 <span><span class="op">)</span></span></code></pre></div>
@@ -111,7 +109,7 @@ from "ollama" to other providers such as "perplexity"</p></dd>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer></div>

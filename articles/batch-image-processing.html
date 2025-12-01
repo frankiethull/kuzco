@@ -31,7 +31,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">kuzco</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.4.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.5.9000</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -96,10 +96,10 @@
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
-<span><span class="fu">mirai</span><span class="fu">::</span><span class="fu">daemons</span><span class="op">(</span><span class="fl">20</span>, .compute <span class="op">=</span> <span class="st">"gpu"</span><span class="op">)</span></span>
+<span><span class="fu">mirai</span><span class="fu">::</span><span class="fu"><a href="https://mirai.r-lib.org/reference/daemons.html" class="external-link">daemons</a></span><span class="op">(</span><span class="fl">20</span>, .compute <span class="op">=</span> <span class="st">"gpu"</span><span class="op">)</span></span>
 <span><span class="va">llm_results</span> <span class="op">&lt;-</span> <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html" class="external-link">map</a></span><span class="op">(</span><span class="va">image_files</span>, </span>
 <span>                          <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/in_parallel.html" class="external-link">in_parallel</a></span><span class="op">(</span>\<span class="op">(</span><span class="va">img</span><span class="op">)</span> <span class="fu">kuzco</span><span class="fu">::</span><span class="fu"><a href="../reference/llm_image_classification.html">llm_image_classification</a></span><span class="op">(</span>image <span class="op">=</span> <span class="va">img</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="fu">mirai</span><span class="fu">::</span><span class="fu">daemons</span><span class="op">(</span><span class="fl">0</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">mirai</span><span class="fu">::</span><span class="fu"><a href="https://mirai.r-lib.org/reference/daemons.html" class="external-link">daemons</a></span><span class="op">(</span><span class="fl">0</span><span class="op">)</span></span></code></pre></div>
 </div>
 </section><section class="level2"><h3 id="applying-many-llm-vision-instructs-to-an-image">applying many llm vision instructs to an image<a class="anchor" aria-label="anchor" href="#applying-many-llm-vision-instructs-to-an-image"></a>
 </h3>
@@ -123,20 +123,22 @@
 <span>  <span class="va">pixtral_classifier</span> <span class="op">&lt;-</span> <span class="fu">kuzco</span><span class="fu">::</span><span class="fu"><a href="../reference/llm_image_classification.html">llm_image_classification</a></span><span class="op">(</span></span>
 <span>    image <span class="op">=</span> <span class="va">img</span>,</span>
 <span>    llm_model <span class="op">=</span> <span class="st">"pixtral-12b"</span>,</span>
-<span>    backend <span class="op">=</span> <span class="st">'mistral'</span></span>
+<span>    provider <span class="op">=</span> <span class="st">'mistral'</span>,</span>
+<span>    backend <span class="op">=</span> <span class="st">'ellmer'</span></span>
 <span>  <span class="op">)</span></span>
 <span>  </span>
 <span>  <span class="va">pixtral_sentiment</span> <span class="op">&lt;-</span> <span class="fu">kuzco</span><span class="fu">::</span><span class="fu"><a href="../reference/llm_image_sentiment.html">llm_image_sentiment</a></span><span class="op">(</span></span>
 <span>    image <span class="op">=</span> <span class="va">img</span>,</span>
 <span>    llm_model <span class="op">=</span> <span class="st">"pixtral-12b"</span>,</span>
-<span>    backend <span class="op">=</span> <span class="st">"mistral"</span></span>
+<span>    provider <span class="op">=</span> <span class="st">'mistral'</span>,</span>
+<span>    backend <span class="op">=</span> <span class="st">"ellmer"</span></span>
 <span>  <span class="op">)</span></span>
 <span><span class="op">}</span></span>
 <span></span>
-<span><span class="fu">mirai</span><span class="fu">::</span><span class="fu">daemons</span><span class="op">(</span><span class="fl">20</span>, .compute <span class="op">=</span> <span class="st">"gpu"</span><span class="op">)</span></span>
+<span><span class="fu">mirai</span><span class="fu">::</span><span class="fu"><a href="https://mirai.r-lib.org/reference/daemons.html" class="external-link">daemons</a></span><span class="op">(</span><span class="fl">20</span>, .compute <span class="op">=</span> <span class="st">"gpu"</span><span class="op">)</span></span>
 <span><span class="va">llm_results</span> <span class="op">&lt;-</span> <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html" class="external-link">map</a></span><span class="op">(</span><span class="va">odin</span>, </span>
 <span>                          <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/in_parallel.html" class="external-link">in_parallel</a></span><span class="op">(</span>\<span class="op">(</span><span class="va">img</span><span class="op">)</span> <span class="fu">vision_workflow</span><span class="op">(</span>image <span class="op">=</span> <span class="va">img</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="fu">mirai</span><span class="fu">::</span><span class="fu">daemons</span><span class="op">(</span><span class="fl">0</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">mirai</span><span class="fu">::</span><span class="fu"><a href="https://mirai.r-lib.org/reference/daemons.html" class="external-link">daemons</a></span><span class="op">(</span><span class="fl">0</span><span class="op">)</span></span></code></pre></div>
 </div>
 </section><section class="level2"><h3 id="applying-many-instructs-to-many-images">applying many instructs to many images<a class="anchor" aria-label="anchor" href="#applying-many-instructs-to-many-images"></a>
 </h3>
@@ -180,37 +182,37 @@
 <span>  <span class="op">)</span></span>
 <span><span class="op">}</span></span>
 <span></span>
-<span><span class="fu">tictoc</span><span class="fu">::</span><span class="fu">tic</span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="fu">tictoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/tictoc/man/tic.html" class="external-link">tic</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co"># Apply to all images and combine into one data frame</span></span>
 <span><span class="va">results_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/map_dfr.html" class="external-link">map_dfr</a></span><span class="op">(</span><span class="va">image_files</span>, <span class="va">process_image</span><span class="op">)</span></span>
-<span><span class="fu">tictoc</span><span class="fu">::</span><span class="fu">toc</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">tictoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/tictoc/man/tic.html" class="external-link">toc</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 </div>
 <p>Using parallelized processes via mirai &amp; purrr’s new <code>in_parallel</code> function.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">tictoc</span><span class="fu">::</span><span class="fu">tic</span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="fu">mirai</span><span class="fu">::</span><span class="fu">daemons</span><span class="op">(</span><span class="fl">20</span>, .compute <span class="op">=</span> <span class="st">"gpu"</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="fu">tictoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/tictoc/man/tic.html" class="external-link">tic</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="fu">mirai</span><span class="fu">::</span><span class="fu"><a href="https://mirai.r-lib.org/reference/daemons.html" class="external-link">daemons</a></span><span class="op">(</span><span class="fl">20</span>, .compute <span class="op">=</span> <span class="st">"gpu"</span><span class="op">)</span></span>
 <span><span class="va">results_df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/map_dfr.html" class="external-link">map_dfr</a></span><span class="op">(</span><span class="va">image_files</span>, </span>
 <span>                      <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/in_parallel.html" class="external-link">in_parallel</a></span><span class="op">(</span>\<span class="op">(</span><span class="va">img</span><span class="op">)</span> <span class="fu">process_image</span><span class="op">(</span>img_path <span class="op">=</span> <span class="va">jmg</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="fu">mirai</span><span class="fu">::</span><span class="fu">daemons</span><span class="op">(</span><span class="fl">0</span><span class="op">)</span></span>
-<span><span class="fu">tictoc</span><span class="fu">::</span><span class="fu">toc</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">mirai</span><span class="fu">::</span><span class="fu"><a href="https://mirai.r-lib.org/reference/daemons.html" class="external-link">daemons</a></span><span class="op">(</span><span class="fl">0</span><span class="op">)</span></span>
+<span><span class="fu">tictoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/tictoc/man/tic.html" class="external-link">toc</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 </div>
 <p>Lastly, crossing images &amp; functions using mirai may be of use.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">tictoc</span><span class="fu">::</span><span class="fu">tic</span><span class="op">(</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="fu">tictoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/tictoc/man/tic.html" class="external-link">tic</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="va">image_tasks</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>classify  <span class="op">=</span> <span class="fu">kuzco</span><span class="fu">::</span><span class="va"><a href="../reference/llm_image_classification.html">llm_image_classification</a></span>,</span>
 <span>                    sentiment <span class="op">=</span> <span class="fu">kuzco</span><span class="fu">::</span><span class="va"><a href="../reference/llm_image_sentiment.html">llm_image_sentiment</a></span></span>
 <span>                    <span class="op">)</span></span>
 <span></span>
 <span><span class="va">grid</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/expand.grid.html" class="external-link">expand.grid</a></span><span class="op">(</span>files <span class="op">=</span> <span class="va">image_files</span>, tasks <span class="op">=</span> <span class="va">image_tasks</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu">mirai</span><span class="fu">::</span><span class="fu">daemons</span><span class="op">(</span><span class="fl">20</span>, .compute <span class="op">=</span> <span class="st">"gpu"</span><span class="op">)</span></span>
+<span><span class="fu">mirai</span><span class="fu">::</span><span class="fu"><a href="https://mirai.r-lib.org/reference/daemons.html" class="external-link">daemons</a></span><span class="op">(</span><span class="fl">20</span>, .compute <span class="op">=</span> <span class="st">"gpu"</span><span class="op">)</span></span>
 <span><span class="va">llm_results</span> <span class="op">&lt;-</span> <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map2.html" class="external-link">map2</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">as.character</a></span><span class="op">(</span><span class="va">grid</span><span class="op">$</span><span class="va">files</span><span class="op">)</span>, </span>
 <span>                           <span class="va">grid</span><span class="op">$</span><span class="va">tasks</span>,</span>
 <span>                           <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/in_parallel.html" class="external-link">in_parallel</a></span><span class="op">(</span>\<span class="op">(</span><span class="va">img</span>, <span class="va">task</span><span class="op">)</span> <span class="op">(</span><span class="fu">task</span><span class="op">(</span>image <span class="op">=</span> <span class="va">img</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="fu">mirai</span><span class="fu">::</span><span class="fu">daemons</span><span class="op">(</span><span class="fl">0</span><span class="op">)</span></span>
-<span><span class="fu">tictoc</span><span class="fu">::</span><span class="fu">toc</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">mirai</span><span class="fu">::</span><span class="fu"><a href="https://mirai.r-lib.org/reference/daemons.html" class="external-link">daemons</a></span><span class="op">(</span><span class="fl">0</span><span class="op">)</span></span>
+<span><span class="fu">tictoc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/tictoc/man/tic.html" class="external-link">toc</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 </div>
 </section></section><script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
@@ -305,7 +307,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer>
