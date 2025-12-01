@@ -1,6 +1,6 @@
 Package: kuzco
 Title: LLM computer vision library in R
-Version: 0.0.4.9000
+Version: 0.0.5.9000
 Authors@R: c(
     person("Frank", "Hull", , "frankiethull@gmail.com", role = c("aut", "cre")),
     person("Johannes", "Breuer", , "johannes.breuer@gesis.org", role = c("ctb"), comment = c(ORCID = "0000-0001-5906-7873")),
@@ -21,6 +21,7 @@ Imports:
     imager,
     jsonlite,
     ollamar,
+    rlang,
     stringr,
     tidyr
 Suggests: 
@@ -28,6 +29,11 @@ Suggests:
     quarto,
     shiny,
     bslib,
-    rmarkdown
+    rmarkdown,
+    purrr,
+    mirai,
+    tibble,
+    tictoc,
+    httr
 VignetteBuilder: quarto, knitr
 URL: https://frankiethull.github.io/kuzco/, https://github.com/frankiethull/kuzco

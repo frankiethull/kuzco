@@ -8,9 +8,8 @@ llm_image_custom(
   llm_model = "qwen2.5vl",
   image = system.file("img/test_img.jpg", package = "kuzco"),
   backend = "ellmer",
-  system_prompt =
-    "You are a terse assistant specializing in computer vision image sentiment.\\n                   You are short and to the point. You only respond if the user supplies an image.\\n                   You will observe the image and return JSON specific answers.\\n                   Return as JSON\\n                   Do not include backticks or 'json' within your answer but purely the json.\\n                   Do not return NULL, all fields must be complete.\\n                   Do not return the exact examples given but fill out the template,\\n                   supply your own new original answer every time. ",
-  image_prompt = "please return JSON for image according to the example format supplied",
+  system_prompt = "You are a terse assistant in computer vision sentiment.",
+  image_prompt = "return JSON describing image, do not include json or backticks",
   example_df = NULL,
   provider = "ollama",
   ...

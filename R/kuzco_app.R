@@ -6,8 +6,7 @@
 #'
 #' @export
 kuzco_app <- \() {
-
-  check_app()
+	check_app()
 
 	ui <- bslib::page_sidebar(
 		title = "computer vision with LLMs",
@@ -51,7 +50,7 @@ kuzco_app <- \() {
 
 		# Handle file upload
 		shiny::observeEvent(input$image, {
-			req(input$image)
+			shiny::req(input$image)
 			# Create a temporary file path for the uploaded image
 			temp_file <- file.path(tempdir(), input$image$name)
 			file.copy(input$image$datapath, temp_file, overwrite = TRUE)
@@ -60,7 +59,7 @@ kuzco_app <- \() {
 
 		# Image preview using the view_image function
 		output$image_preview <- shiny::renderPlot({
-			req(image_path())
+			shiny::req(image_path())
 			tryCatch(
 				{
 					kuzco::view_image(image_path())
@@ -76,7 +75,7 @@ kuzco_app <- \() {
 
 		# Run the selected function when the button is clicked
 		shiny::observeEvent(input$run, {
-			req(image_path(), input$selected_function)
+			shiny::req(image_path(), input$selected_function)
 
 			# Show a notification that analysis is running
 			shiny::showNotification("Running analysis...", type = "message", id = "analysis")
@@ -115,7 +114,7 @@ kuzco_app <- \() {
 
 		# Display results using the view_results function
 		output$results_table <- gt::render_gt({
-			req(results())
+			shiny::req(results())
 			kuzco::view_llm_results(results())
 		})
 	}
@@ -124,12 +123,11 @@ kuzco_app <- \() {
 }
 
 
-
 check_app <- \() {
-  if (!rlang::is_installed(c("shiny", "bslib"))) {
-    rlang::abort("'shiny' and 'bslib' are required for kuzco::kuzco_app().")
-  }
-  loadNamespace("shiny")
-  loadNamespace("bslib")
-  invisible(NULL)
+	if (!rlang::is_installed(c("shiny", "bslib"))) {
+		rlang::abort("'shiny' and 'bslib' are required for kuzco::kuzco_app().")
+	}
+	loadNamespace("shiny")
+	loadNamespace("bslib")
+	invisible(NULL)
 }

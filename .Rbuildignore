@@ -8,3 +8,6 @@
 ^docs$
 ^pkgdown$
 ^\.github$
+^LICENSE\.md$
+^README\.Rmd$
+^_brand\.yml$
