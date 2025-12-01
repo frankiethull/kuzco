@@ -1,3 +1,8 @@
+# kuzco 0.0.5.9000
+ - remove references to deprecated `ellmer` chat functions. 
+ - add `list_prompts` and `edit_prompt`
+ - reduce warnings & notes as a preparation for CRAN submittal
+
 # kuzco 0.0.4.9000
  - add language argument for ease-of-use. This enables multilingual LLMs to return different languages.
  - add a `multilingual-support.qmd` vignette to showcase the new option.

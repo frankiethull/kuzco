@@ -27,14 +27,13 @@ llm_image_classification <- \(
 	image_prompt <- paste0(additional_prompt, image_prompt)
 
 	image_prompt <- base::gsub(
-	  pattern = "[INPUT_LANGUAGE]",
-	  replacement = language,
-	  x = image_prompt
+		pattern = "[INPUT_LANGUAGE]",
+		replacement = language,
+		x = image_prompt
 	)
 
-
 	if (backend == 'ollamar') {
-		kuzco:::ollamar_image_classification(
+		ollamar_image_classification(
 			llm_model = llm_model,
 			image_prompt = image_prompt,
 			image = image,
@@ -42,7 +41,7 @@ llm_image_classification <- \(
 			...
 		)
 	} else if (backend == 'ellmer') {
-		kuzco:::ellmer_image_classification(
+		ellmer_image_classification(
 			llm_model = llm_model,
 			image_prompt = image_prompt,
 			image = image,
@@ -98,8 +97,7 @@ ellmer_image_classification <- \(
 	provider = provider,
 	...
 ) {
-
-  chat_provider <- chat_ellmer(provider = provider)
+	chat_provider <- chat_ellmer(provider = provider)
 
 	chat <- chat_provider(
 		model = llm_model,

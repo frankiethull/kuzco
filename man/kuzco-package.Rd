@@ -14,6 +14,7 @@ This package is a designed to make computer vision easy in R. The prompts and fu
 Useful links:
 \itemize{
   \item \url{https://frankiethull.github.io/kuzco/}
+  \item \url{https://github.com/frankiethull/kuzco}
 }
 
 }

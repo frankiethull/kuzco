@@ -90,13 +90,15 @@ vision_workflow <- \(img){
   pixtral_classifier <- kuzco::llm_image_classification(
     image = img,
     llm_model = "pixtral-12b",
-    backend = 'mistral'
+    provider = 'mistral',
+    backend = 'ellmer'
   )
   
   pixtral_sentiment <- kuzco::llm_image_sentiment(
     image = img,
     llm_model = "pixtral-12b",
-    backend = "mistral"
+    provider = 'mistral',
+    backend = "ellmer"
   )
 }
 

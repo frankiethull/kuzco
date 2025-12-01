@@ -28,9 +28,9 @@ llm_image_recognition <- \(
 	image_prompt <- paste0(additional_prompt, image_prompt)
 
 	image_prompt <- base::gsub(
-	  pattern = "[INPUT_LANGUAGE]",
-	  replacement = language,
-	  x = image_prompt
+		pattern = "[INPUT_LANGUAGE]",
+		replacement = language,
+		x = image_prompt
 	)
 
 	image_prompt <- base::gsub(
@@ -40,7 +40,7 @@ llm_image_recognition <- \(
 	)
 
 	if (backend == 'ollamar') {
-		kuzco:::ollamar_image_recognition(
+		ollamar_image_recognition(
 			llm_model = llm_model,
 			image_prompt = image_prompt,
 			image = image,
@@ -48,7 +48,7 @@ llm_image_recognition <- \(
 			...
 		)
 	} else if (backend == 'ellmer') {
-		kuzco:::ellmer_image_recognition(
+		ellmer_image_recognition(
 			llm_model = llm_model,
 			image_prompt = image_prompt,
 			image = image,
@@ -81,17 +81,18 @@ ollamar_image_recognition <- \(llm_model = llm_model, image_prompt = image_promp
 	return(llm_df)
 }
 
-ellmer_image_recognition <- \(llm_model = llm_model,
-                              image_prompt = image_prompt,
-                              image = image,
-                              system_prompt = system_prompt,
-                              provider = provider,
-                              ...) {
+ellmer_image_recognition <- \(
+	llm_model = llm_model,
+	image_prompt = image_prompt,
+	image = image,
+	system_prompt = system_prompt,
+	provider = provider,
+	...
+) {
+	chat_provider <- chat_ellmer(provider = provider)
 
-  chat_provider <- chat_ellmer(provider = provider)
-
-  chat <- chat_provider(
-    model = llm_model,
+	chat <- chat_provider(
+		model = llm_model,
 		system_prompt = system_prompt,
 		...
 	)
