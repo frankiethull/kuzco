@@ -6,6 +6,9 @@
 \usage{
 edit_prompt(prompt)
 }
+\arguments{
+\item{prompt}{a prompt from list_prompts()}
+}
 \description{
 edit a listed prompt installed with kuzco
 }
