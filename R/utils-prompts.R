@@ -18,8 +18,9 @@ list_prompts <- \() {
 #' @returns a prompt markdown file to edit
 #' @export
 #' @examples
+#' \dontrun{
 #' edit_prompt("system-prompt-alt-text.md")
-#'
+#'}
 edit_prompt <- \(prompt) {
-	file.edit(system.file("prompts", prompt, package = "kuzco"))
+	utils::file.edit(system.file("prompts", prompt, package = "kuzco"))
 }

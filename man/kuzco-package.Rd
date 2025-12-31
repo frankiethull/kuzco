@@ -4,7 +4,7 @@
 \name{kuzco-package}
 \alias{kuzco}
 \alias{kuzco-package}
-\title{kuzco: LLM computer vision library in R}
+\title{kuzco: LLM Computer Vision Library in R}
 \description{
 \if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
 
@@ -15,6 +15,7 @@ Useful links:
 \itemize{
   \item \url{https://frankiethull.github.io/kuzco/}
   \item \url{https://github.com/frankiethull/kuzco}
+  \item Report bugs at \url{https://github.com/frankiethull/kuzco/issues}
 }
 
 }

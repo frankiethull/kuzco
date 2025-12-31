@@ -11,6 +11,7 @@
 #' @importFrom ellmer type_array
 #' @importFrom ellmer type_object
 #' @importFrom ellmer type_string
+#' @importFrom graphics text
 #' @importFrom gt cell_text
 #' @importFrom gt cells_title
 #' @importFrom gt gt
@@ -26,5 +27,6 @@
 #' @importFrom stringr str_replace_all
 #' @importFrom stringr str_to_title
 #' @importFrom tidyr pivot_longer
+#' @importFrom utils file.edit
 ## usethis namespace: end
 NULL

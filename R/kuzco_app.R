@@ -74,7 +74,7 @@ kuzco_app <- \() {
 					message("Error displaying image:", e$message)
 					# Return an empty plot with error message
 					plot(1, type = "n", axes = FALSE, xlab = "", ylab = "")
-					text(1, 1, paste("Error displaying image:", e$message))
+					graphics::text(1, 1, paste("Error displaying image:", e$message))
 				}
 			)
 		})

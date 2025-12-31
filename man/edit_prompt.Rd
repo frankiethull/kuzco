@@ -16,6 +16,7 @@ a prompt markdown file to edit
 edit a listed prompt installed with kuzco
 }
 \examples{
+\dontrun{
 edit_prompt("system-prompt-alt-text.md")
-
+}
 }
