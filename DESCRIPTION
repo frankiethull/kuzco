@@ -39,3 +39,4 @@ Suggests:
     httr
 VignetteBuilder: quarto, knitr
 URL: https://frankiethull.github.io/kuzco/, https://github.com/frankiethull/kuzco
+BugReports: https://github.com/frankiethull/kuzco/issues
