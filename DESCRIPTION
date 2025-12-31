@@ -2,11 +2,13 @@ Package: kuzco
 Title: LLM computer vision library in R
 Version: 0.0.5.9000
 Authors@R: c(
-    person("Frank", "Hull", , "frankiethull@gmail.com", role = c("aut", "cre")),
+    person("Frank", "Hull", , "frankiethull@gmail.com", role = c("aut", "cre", "cph")),
     person("Johannes", "Breuer", , "johannes.breuer@gesis.org", role = c("ctb"), comment = c(ORCID = "0000-0001-5906-7873")),
     person("Jordi", "Rosell", , "jroselln@gmail.com", role = c("ctb"), comment = c(ORCID = "0000-0002-4349-1458"))
     )
-Description: This package is a designed to make computer vision easy in R. The prompts and functions are designed to take an image as an input and supply information as an output.
+Description: Make computer vision tasks approachable in R by leveraging LLMs. 
+    kuzco provides fine-tuned prompts, boilerplate functions, and input/output helpers for common computer vision workflows, such as classifying and describing images.
+    Functions are designed to take images as input and return structured data, helping users build practical applications with minimal code.
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)

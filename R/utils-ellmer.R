@@ -1,10 +1,10 @@
-#' chat ellmer
+#' chat ellmer helper (predates ellmer::chat)
 #' @description
 #' a minimal wrapper function to switch which provider is used for each llm_image* function
 #' when ellmer backend is selected, ollamar only supports ollama
 #'
 #' @param provider a provider, such as "ollama", or "claude", or "github"
-#'
+#' @returns which ellmer function (provider) to use for kuzco llm_image_* when backend is ellmer
 chat_ellmer <- \(provider = "ollama") {
 	# fmt: skip
 	chat_providers <- list(

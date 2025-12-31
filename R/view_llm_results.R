@@ -4,6 +4,10 @@
 #'
 #' @returns a great table to view the results neatly
 #' @export
+#' @examples
+#' \dontrun{
+#' view_llm_results(llm_image_alt_text())
+#' }
 view_llm_results <- \(llm_results) {
 	# create a long data.frame for the llm_results
 	llm_results_long <-

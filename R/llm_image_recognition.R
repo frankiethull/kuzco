@@ -11,8 +11,20 @@
 #' @param language          a language to guide the LLM model outputs
 #' @param ...               a pass through for other generate args and model args like temperature. set the temperature to 0 for more deterministic output
 #'
-#' @return a df with object_recognized, object_count, object_description, object_location
+#' @returns a df with object_recognized, object_count, object_description, object_location
 #' @export
+#' @examples
+#' \dontrun{
+#' llm_image_recognition(
+#'  llm_model = "qwen2.5vl",
+#'  image = system.file("img/test_img.jpg", package = "kuzco"),
+#' 	recognize_object = "nose",
+#'  backend = 'ellmer',
+#'  additional_prompt = "",
+#'	provider = "ollama",
+#'	language = "English"
+#')
+#' }
 llm_image_recognition <- \(
 	llm_model = "qwen2.5vl",
 	image = system.file("img/test_img.jpg", package = "kuzco"),

@@ -40,3 +40,16 @@ a df with object_recognized, object_count, object_description, object_location
 \description{
 Image Recognition using LLMs
 }
+\examples{
+\dontrun{
+llm_image_recognition(
+ llm_model = "qwen2.5vl",
+ image = system.file("img/test_img.jpg", package = "kuzco"),
+	recognize_object = "nose",
+ backend = 'ellmer',
+ additional_prompt = "",
+provider = "ollama",
+language = "English"
+)
+}
+}

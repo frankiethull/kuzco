@@ -11,8 +11,20 @@
 #'                   from "ollama" to other providers such as "perplexity"
 #' @param ...        a pass through for other generate args and model args like temperature
 #'
-#' @return a customized return based on example_df for custom control
+#' @returns a customized return based on example_df for custom control
 #' @export
+#' @examples
+#' \dontrun{
+#'
+#' llm_image_custom(
+#'  llm_model = "qwen2.5vl",
+#'  image = system.file("img/test_img.jpg", package = "kuzco"),
+#'  backend = "ellmer",
+#'  system_prompt = "You are a terse assistant in computer vision sentiment.",
+#'  image_prompt = "return JSON describing image, do not include json or backticks",
+#'  example_df = NULL,
+#'  provider = "ollama"
+#' }
 llm_image_custom <- \(
 	llm_model = "qwen2.5vl",
 	image = system.file("img/test_img.jpg", package = "kuzco"),

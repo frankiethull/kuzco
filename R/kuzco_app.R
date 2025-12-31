@@ -5,6 +5,12 @@
 #' (https://gallery.shinyapps.io/assistant/)
 #'
 #' @export
+#' @returns a shiny app instance as a playground for local llms
+#' @examples
+#' \dontrun{
+#' kuzco_app()
+#' }
+#'
 kuzco_app <- \() {
 	check_app()
 

@@ -37,3 +37,15 @@ a df with image_classification, primary_object, secondary_object, image_descript
 \description{
 Image Classification using LLMs
 }
+\examples{
+\dontrun{
+llm_image_classification(
+ llm_model = "qwen2.5vl",
+ image = system.file("img/test_img.jpg", package = "kuzco"),
+ backend = 'ellmer',
+ additional_prompt = "",
+provider = "ollama",
+language = "English"
+)
+}
+}

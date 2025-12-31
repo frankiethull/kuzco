@@ -6,6 +6,13 @@
 \usage{
 list_prompts()
 }
+\value{
+a list of prompts stored within kuzco
+}
 \description{
 list prompts installed with kuzco
+}
+\examples{
+list_prompts()
+
 }

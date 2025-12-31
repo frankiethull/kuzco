@@ -6,8 +6,17 @@
 \usage{
 kuzco_app()
 }
+\value{
+a shiny app instance as a playground for local llms
+}
 \description{
 a simple wrapper of kuzco to make computer vision for everyone.
 few-shot via frank hull and shiny assistant
 (https://gallery.shinyapps.io/assistant/)
+}
+\examples{
+\dontrun{
+kuzco_app()
+}
+
 }

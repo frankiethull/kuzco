@@ -9,6 +9,13 @@ edit_prompt(prompt)
 \arguments{
 \item{prompt}{a prompt from list_prompts()}
 }
+\value{
+a prompt markdown file to edit
+}
 \description{
 edit a listed prompt installed with kuzco
+}
+\examples{
+edit_prompt("system-prompt-alt-text.md")
+
 }

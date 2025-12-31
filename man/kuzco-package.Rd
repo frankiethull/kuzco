@@ -8,7 +8,7 @@
 \description{
 \if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
 
-This package is a designed to make computer vision easy in R. The prompts and functions are designed to take an image as an input and supply information as an output.
+Make computer vision tasks approachable in R by leveraging LLMs. kuzco provides fine-tuned prompts, boilerplate functions, and input/output helpers for common computer vision workflows, such as classifying and describing images. Functions are designed to take images as input and return structured data, helping users build practical applications with minimal code.
 }
 \seealso{
 Useful links:
@@ -19,7 +19,7 @@ Useful links:
 
 }
 \author{
-\strong{Maintainer}: Frank Hull \email{frankiethull@gmail.com}
+\strong{Maintainer}: Frank Hull \email{frankiethull@gmail.com} [copyright holder]
 
 Other contributors:
 \itemize{

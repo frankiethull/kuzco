@@ -2,12 +2,15 @@
 % Please edit documentation in R/utils-ellmer.R
 \name{chat_ellmer}
 \alias{chat_ellmer}
-\title{chat ellmer}
+\title{chat ellmer helper (predates ellmer::chat)}
 \usage{
 chat_ellmer(provider = "ollama")
 }
 \arguments{
 \item{provider}{a provider, such as "ollama", or "claude", or "github"}
+}
+\value{
+which ellmer function (provider) to use for kuzco llm_image_* when backend is ellmer
 }
 \description{
 a minimal wrapper function to switch which provider is used for each llm_image* function

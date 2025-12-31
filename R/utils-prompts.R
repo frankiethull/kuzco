@@ -3,6 +3,10 @@
 #' list prompts installed with kuzco
 #'
 #' @export
+#' @returns a list of prompts stored within kuzco
+#' @examples
+#' list_prompts()
+#'
 list_prompts <- \() {
 	list.files(system.file("prompts", package = "kuzco"))
 }
@@ -11,7 +15,11 @@ list_prompts <- \() {
 #' @description
 #' edit a listed prompt installed with kuzco
 #' @param prompt a prompt from list_prompts()
+#' @returns a prompt markdown file to edit
 #' @export
+#' @examples
+#' edit_prompt("system-prompt-alt-text.md")
+#'
 edit_prompt <- \(prompt) {
 	file.edit(system.file("prompts", prompt, package = "kuzco"))
 }

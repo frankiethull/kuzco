@@ -11,3 +11,4 @@
 ^LICENSE\.md$
 ^README\.Rmd$
 ^_brand\.yml$
+^cran-comments\.md$

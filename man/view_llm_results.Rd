@@ -15,3 +15,8 @@ a great table to view the results neatly
 \description{
 view llm results as a tidy great table
 }
+\examples{
+\dontrun{
+view_llm_results(llm_image_alt_text())
+}
+}

@@ -15,3 +15,7 @@ a plot of the image in a Plots pane
 \description{
 View Images quickly and easily
 }
+\examples{
+view_image(image = system.file("img/test_img.jpg", package = "kuzco"))
+
+}

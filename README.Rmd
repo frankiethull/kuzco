@@ -30,6 +30,8 @@ You can install the development version of kuzco like so:
 devtools::install_github("frankiethull/kuzco")
 ```
 
+**kuzco 0.1.0 can be installed from CRAN via `install.packages("kuzco")!**
+
 ## Example
 
 This is a basic example which shows you how to use kuzco.
@@ -47,8 +49,7 @@ test_img <- file.path(system.file(package = "kuzco"), "img/test_img.jpg")
 
 ### llm for image classification:
 ```{r}
-llm_results <- llm_image_classification(llm_model = "qwen2.5vl", image = test_img, 
-                                        backend = 'ollamar')
+llm_results <- llm_image_classification(llm_model = "qwen2.5vl", image = test_img)
 ```
 
 ```{r}
@@ -72,8 +73,7 @@ note that the backend of kuzco is flexible as well. This allows users to specify
 ```{r}
 llm_detection <- llm_image_recognition(llm_model = "qwen2.5vl", 
                                        image = test_img,
-                                       recognize_object = "nose",
-                                       backend  = "ollamar")
+                                       recognize_object = "nose")
 
 llm_detection |> str()
 ```
@@ -137,7 +137,7 @@ Sys.setenv(MISTRAL_API_KEY = "the_api_key_via_the_provider")
 usethis::edit_r_environ()
 ```
   
-```{r}
+```r
 kuzco::llm_image_classification(provider = "mistral", llm_model = "pixtral-12b", image = test_img)
 ```
 
