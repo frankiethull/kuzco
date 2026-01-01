@@ -13,3 +13,15 @@ edit_prompt(prompt)
 - prompt:
 
   a prompt from list_prompts()
+
+## Value
+
+a prompt markdown file to edit
+
+## Examples
+
+``` r
+if (FALSE) { # \dontrun{
+edit_prompt("system-prompt-alt-text.md")
+} # }
+```

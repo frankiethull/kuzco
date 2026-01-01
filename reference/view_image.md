@@ -17,3 +17,10 @@ view_image(image = system.file("img/test_img.jpg", package = "kuzco"))
 ## Value
 
 a plot of the image in a Plots pane
+
+## Examples
+
+``` r
+view_image(image = system.file("img/test_img.jpg", package = "kuzco"))
+
+```

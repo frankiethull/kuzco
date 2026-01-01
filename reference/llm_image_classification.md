@@ -54,3 +54,18 @@ llm_image_classification(
 
 a df with image_classification, primary_object, secondary_object,
 image_description, image_colors, image_proba_names, image_proba_values
+
+## Examples
+
+``` r
+if (FALSE) { # \dontrun{
+llm_image_classification(
+ llm_model = "qwen2.5vl",
+ image = system.file("img/test_img.jpg", package = "kuzco"),
+ backend = 'ellmer',
+ additional_prompt = "",
+provider = "ollama",
+language = "English"
+)
+} # }
+```

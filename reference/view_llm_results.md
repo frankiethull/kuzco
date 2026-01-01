@@ -17,3 +17,11 @@ view_llm_results(llm_results)
 ## Value
 
 a great table to view the results neatly
+
+## Examples
+
+``` r
+if (FALSE) { # \dontrun{
+view_llm_results(llm_image_alt_text())
+} # }
+```

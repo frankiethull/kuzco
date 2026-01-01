@@ -17,6 +17,9 @@ You can install the development version of kuzco like so:
 devtools::install_github("frankiethull/kuzco")
 ```
 
+**kuzco 0.1.0 can be installed from CRAN via
+\`install.packages(“kuzco”)!**
+
 ## Example
 
 This is a basic example which shows you how to use kuzco.
@@ -40,8 +43,7 @@ picture of puppy odin circa 2019.
 ### llm for image classification:
 
 ``` r
-llm_results <- llm_image_classification(llm_model = "qwen2.5vl", image = test_img, 
-                                        backend = 'ollamar')
+llm_results <- llm_image_classification(llm_model = "qwen2.5vl", image = test_img)
 ```
 
 ``` r
@@ -49,23 +51,21 @@ llm_results |> tibble::as_tibble()
 #> # A tibble: 1 × 7
 #>   image_classification primary_object secondary_object image_description        
 #>   <chr>                <chr>          <chr>            <chr>                    
-#> 1 puppy                puppy          face             a close-up of a puppy wi…
-#> # ℹ 3 more variables: image_colors <chr>, image_proba_names <list>,
-#> #   image_proba_values <list>
+#> 1 pet                  puppy          ""               A close-up of a young pu…
+#> # ℹ 3 more variables: image_colors <chr>, image_proba_names <chr>,
+#> #   image_proba_values <chr>
 ```
 
 ``` r
 llm_results |> str()
-#> 'data.frame':    1 obs. of  7 variables:
-#>  $ image_classification: chr "puppy"
+#> tibble [1 × 7] (S3: tbl_df/tbl/data.frame)
+#>  $ image_classification: chr "pet"
 #>  $ primary_object      : chr "puppy"
-#>  $ secondary_object    : chr "face"
-#>  $ image_description   : chr "a close-up of a puppy with a mix of black and white fur, looking directly at the camera with a curious expression."
-#>  $ image_colors        : chr "#000000, #FFFFFF, #808080"
-#>  $ image_proba_names   :List of 1
-#>   ..$ : chr "puppy, puppy face, fur, eyes, nose"
-#>  $ image_proba_values  :List of 1
-#>   ..$ : chr "0.7, 0.2, 0.05, 0.05, 0.05"
+#>  $ secondary_object    : chr ""
+#>  $ image_description   : chr "A close-up of a young puppy with a mix of white and brown fur, sitting on a red plaid fabric, possibly a couch or blanket."
+#>  $ image_colors        : chr "[#CCCCCC, #000000, #CC0000, #FFFFFF, #808080]"
+#>  $ image_proba_names   : chr "['puppy', 'fabric', 'animal', 'dog breed', 'furry']"
+#>  $ image_proba_values  : chr "[0.6, 0.15, 0.1, 0.05, 0.05]"
 ```
 
 ### llm for image sentiment:
@@ -74,11 +74,11 @@ llm_results |> str()
 llm_emotion <- llm_image_sentiment(llm_model = "qwen2.5vl", image = test_img)
 
 llm_emotion |> str()
-#> 'data.frame':    1 obs. of  4 variables:
+#> tibble [1 × 4] (S3: tbl_df/tbl/data.frame)
 #>  $ image_sentiment      : chr "positive"
-#>  $ image_score          : num 0.8
-#>  $ sentiment_description: chr "The image evokes feelings of warmth and affection due to the adorable appearance of the puppy."
-#>  $ image_keywords       : chr "cute, lovable, friendly, cuddly, appealing"
+#>  $ image_score          : num 0.9
+#>  $ sentiment_description: chr "The adorable and slightly squint-eyed puppy conveys curiosity and an innocent charm, evoking a tender and affec"| __truncated__
+#>  $ image_keywords       : chr "cute, adorable, curious, innocent, lovable"
 ```
 
 ### llm for image recognition:
@@ -90,15 +90,14 @@ specify between ‘ollamar’, which suggests structured outputs, while
 ``` r
 llm_detection <- llm_image_recognition(llm_model = "qwen2.5vl", 
                                        image = test_img,
-                                       recognize_object = "nose",
-                                       backend  = "ollamar")
+                                       recognize_object = "nose")
 
 llm_detection |> str()
-#> 'data.frame':    1 obs. of  4 variables:
-#>  $ object_recognized : chr "yes"
-#>  $ object_count      : int 1
-#>  $ object_description: chr "The nose is black and is located in the center of the image, slightly below the eyes."
-#>  $ object_location   : chr "center"
+#> tibble [1 × 4] (S3: tbl_df/tbl/data.frame)
+#>  $ object_recognized : chr "Nose"
+#>  $ object_count      : int 0
+#>  $ object_description: chr "Nose"
+#>  $ object_location   : chr "top"
 ```
 
 ### llm for image text extraction:
@@ -120,9 +119,9 @@ llm_extract_txt <- llm_image_extract_text(llm_model = "qwen2.5vl",
                                           backend  = "ellmer")
 
 llm_extract_txt |> str()
-#> 'data.frame':    1 obs. of  2 variables:
-#>  $ text            : chr "Picture of Odin as a puppy"
-#>  $ confidence_score: num 0.95
+#> tibble [2 × 2] (S3: tbl_df/tbl/data.frame)
+#>  $ text            : chr [1:2] "Picture of Odin\nas a puppy\n" "circa Q4 2019"
+#>  $ confidence_score: num [1:2] 0.95 0.92
 ```
 
 ## newer features
@@ -147,9 +146,9 @@ llm_customized <- llm_image_custom(llm_model = "qwen2.5vl",
 
 llm_customized |> str()
 #> 'data.frame':    1 obs. of  3 variables:
-#>  $ dog_breed_primary    : chr "Blue Heeler"
-#>  $ dog_breed_secondary  : chr "Cowboy Mix"
-#>  $ dog_breed_information: chr "Blue Heelers are a cattle-working breed known for their intelligence and herding abilities. The primary breed, "| __truncated__
+#>  $ dog_breed_primary    : chr "Pointer"
+#>  $ dog_breed_secondary  : chr "Cocker Spaniel"
+#>  $ dog_breed_information: chr "This image features a puppy with a mottled coat that is likely a mix of Pointer and Cocker Spaniel. Pointers ar"| __truncated__
 ```
 
 ### additional enhancements:
@@ -190,14 +189,6 @@ usethis::edit_r_environ()
 
 ``` r
 kuzco::llm_image_classification(provider = "mistral", llm_model = "pixtral-12b", image = test_img)
-#>   image_classification primary_object secondary_object
-#> 1                  dog            dog              ear
-#>                                                              image_description
-#> 1 Close-up of a black and white dog with a red and black checkered background.
-#>                         image_colors               image_proba_names
-#> 1 #000000, #FFFFFF, #FF0000, #FF00FF dog, ear, fur, eyes, background
-#>          image_proba_values
-#> 1 0.6, 0.2, 0.1, 0.05, 0.05
 ```
 
 # Package index
@@ -205,7 +196,7 @@ kuzco::llm_image_classification(provider = "mistral", llm_model = "pixtral-12b",
 ## All functions
 
 - [`chat_ellmer()`](https://frankiethull.github.io/kuzco/reference/chat_ellmer.md)
-  : chat ellmer
+  : chat ellmer helper (predates ellmer::chat)
 - [`edit_prompt()`](https://frankiethull.github.io/kuzco/reference/edit_prompt.md)
   : edit prompt
 - [`kuzco_app()`](https://frankiethull.github.io/kuzco/reference/kuzco_app.md)

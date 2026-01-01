@@ -60,3 +60,5 @@ llm_image_custom(
 ## Value
 
 a customized return based on example_df for custom control
+
+## Examples

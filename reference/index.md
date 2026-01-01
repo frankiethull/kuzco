@@ -3,7 +3,7 @@
 ## All functions
 
 - [`chat_ellmer()`](https://frankiethull.github.io/kuzco/reference/chat_ellmer.md)
-  : chat ellmer
+  : chat ellmer helper (predates ellmer::chat)
 - [`edit_prompt()`](https://frankiethull.github.io/kuzco/reference/edit_prompt.md)
   : edit prompt
 - [`kuzco_app()`](https://frankiethull.github.io/kuzco/reference/kuzco_app.md)

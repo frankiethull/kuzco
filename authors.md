@@ -2,7 +2,7 @@
 
 ## Authors
 
-- **Frank Hull**. Author, maintainer.
+- **Frank Hull**. Author, maintainer, copyright holder.
 
 - **Johannes Breuer**. Contributor.
   [](https://orcid.org/0000-0001-5906-7873)
@@ -15,13 +15,13 @@
 Source:
 [`DESCRIPTION`](https://github.com/frankiethull/kuzco/blob/main/DESCRIPTION)
 
-Hull F (2025). *kuzco: LLM computer vision library in R*. R package
-version 0.0.5.9000, <https://frankiethull.github.io/kuzco/>.
+Hull F (2026). *kuzco: LLM Computer Vision Library in R*. R package
+version 0.1.0, <https://frankiethull.github.io/kuzco/>.
 
     @Manual{,
-      title = {kuzco: LLM computer vision library in R},
+      title = {kuzco: LLM Computer Vision Library in R},
       author = {Frank Hull},
-      year = {2025},
-      note = {R package version 0.0.5.9000},
+      year = {2026},
+      note = {R package version 0.1.0},
       url = {https://frankiethull.github.io/kuzco/},
     }

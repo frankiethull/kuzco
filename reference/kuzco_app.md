@@ -9,3 +9,15 @@ via frank hull and shiny assistant
 ``` r
 kuzco_app()
 ```
+
+## Value
+
+a shiny app instance as a playground for local llms
+
+## Examples
+
+``` r
+if (FALSE) { # \dontrun{
+kuzco_app()
+} # }
+```

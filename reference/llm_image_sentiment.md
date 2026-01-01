@@ -55,3 +55,18 @@ llm_image_sentiment(
 
 a df with image_sentiment, image_score, sentiment_description,
 image_keywords
+
+## Examples
+
+``` r
+if (FALSE) { # \dontrun{
+llm_image_sentiment(
+ llm_model = "qwen2.5vl",
+ image = system.file("img/test_img.jpg", package = "kuzco"),
+ backend = 'ellmer',
+ additional_prompt = "",
+provider = "ollama",
+language = "English"
+)
+} # }
+```
