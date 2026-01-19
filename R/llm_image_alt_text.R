@@ -60,7 +60,7 @@ llm_image_alt_text <- \(
 			...
 		)
 	} else {
-		print('incorrect backend selection')
+		message('incorrect backend selection')
 	}
 }
 

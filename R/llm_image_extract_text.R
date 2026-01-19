@@ -60,7 +60,7 @@ llm_image_extract_text <- \(
 			...
 		)
 	} else {
-		print('incorrect backend selection')
+		message('incorrect backend selection')
 	}
 }
 

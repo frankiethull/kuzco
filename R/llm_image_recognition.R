@@ -69,7 +69,7 @@ llm_image_recognition <- \(
 			...
 		)
 	} else {
-		print('incorrect backend selection')
+		message('incorrect backend selection')
 	}
 }
 

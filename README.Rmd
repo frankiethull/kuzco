@@ -30,7 +30,7 @@ You can install the development version of kuzco like so:
 devtools::install_github("frankiethull/kuzco")
 ```
 
-**kuzco 0.1.0 can be installed from CRAN via `install.packages("kuzco")!**
+**kuzco 0.1.0 can be installed from CRAN via `install.packages("kuzco")!`**
 
 ## Example
 

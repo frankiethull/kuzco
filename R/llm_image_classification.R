@@ -61,7 +61,7 @@ llm_image_classification <- \(
 			...
 		)
 	} else {
-		print('incorrect backend selection')
+		message('incorrect backend selection')
 	}
 }
 

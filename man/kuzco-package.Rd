@@ -4,11 +4,11 @@
 \name{kuzco-package}
 \alias{kuzco}
 \alias{kuzco-package}
-\title{kuzco: LLM Computer Vision Library in R}
+\title{kuzco: Computer Vision with Large Language Models}
 \description{
 \if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
 
-Make computer vision tasks approachable in R by leveraging LLMs. kuzco provides fine-tuned prompts, boilerplate functions, and input/output helpers for common computer vision workflows, such as classifying and describing images. Functions are designed to take images as input and return structured data, helping users build practical applications with minimal code.
+Make computer vision tasks approachable in R by leveraging Large Language Models. Providing fine-tuned prompts, boilerplate functions, and input/output helpers for common computer vision workflows, such as classifying and describing images. Functions are designed to take images as input and return structured data, helping users build practical applications with minimal code.
 }
 \seealso{
 Useful links:

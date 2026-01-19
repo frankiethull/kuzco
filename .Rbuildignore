@@ -12,3 +12,4 @@
 ^README\.Rmd$
 ^_brand\.yml$
 ^cran-comments\.md$
+^CRAN-SUBMISSION$

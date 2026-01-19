@@ -24,6 +24,7 @@
 #'  image_prompt = "return JSON describing image, do not include json or backticks",
 #'  example_df = NULL,
 #'  provider = "ollama"
+#' )
 #' }
 llm_image_custom <- \(
 	llm_model = "qwen2.5vl",
@@ -62,7 +63,7 @@ llm_image_custom <- \(
 			...
 		)
 	} else {
-		print('incorrect backend selection')
+		message('incorrect backend selection')
 	}
 }
 
