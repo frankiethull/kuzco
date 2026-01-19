@@ -2,8 +2,7 @@
 
 ## kuzco 0.1.0
 
-## kuzco 0.0.5.9000
-
+- initial CRAN release \# kuzco 0.0.5.9000
 - remove references to deprecated `ellmer` chat functions.
 - add `list_prompts` and `edit_prompt`
 - reduce warnings & notes as a preparation for CRAN submittal

@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>LLM Computer Vision Library in R • kuzco</title>
+<title>Computer Vision with Large Language Models • kuzco</title>
 <!-- favicons --><link rel="icon" type="image/png" sizes="96x96" href="favicon-96x96.png">
 <link rel="icon" type="”image/svg+xml”" href="favicon.svg">
 <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
@@ -18,9 +18,9 @@
 <link href="deps/Kode_Mono-0.4.10/font.css" rel="stylesheet">
 <link href="deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
-<script src="deps/headroom-0.11.0/headroom.min.js"></script><script src="deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="deps/search-1.0.0/fuse.min.js"></script><script src="deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="LLM Computer Vision Library in R">
-<meta name="description" content="Make computer vision tasks approachable in R by leveraging LLMs. kuzco provides fine-tuned prompts, boilerplate functions, and input/output helpers for common computer vision workflows, such as classifying and describing images. Functions are designed to take images as input and return structured data, helping users build practical applications with minimal code.">
-<meta property="og:description" content="Make computer vision tasks approachable in R by leveraging LLMs. kuzco provides fine-tuned prompts, boilerplate functions, and input/output helpers for common computer vision workflows, such as classifying and describing images. Functions are designed to take images as input and return structured data, helping users build practical applications with minimal code.">
+<script src="deps/headroom-0.11.0/headroom.min.js"></script><script src="deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="deps/search-1.0.0/fuse.min.js"></script><script src="deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="Computer Vision with Large Language Models">
+<meta name="description" content="Make computer vision tasks approachable in R by leveraging Large Language Models. Providing fine-tuned prompts, boilerplate functions, and input/output helpers for common computer vision workflows, such as classifying and describing images. Functions are designed to take images as input and return structured data, helping users build practical applications with minimal code.">
+<meta property="og:description" content="Make computer vision tasks approachable in R by leveraging Large Language Models. Providing fine-tuned prompts, boilerplate functions, and input/output helpers for common computer vision workflows, such as classifying and describing images. Functions are designed to take images as input and return structured data, helping users build practical applications with minimal code.">
 <meta property="og:image" content="https://frankiethull.github.io/kuzco/logo.png">
 </head>
 <body>
@@ -79,7 +79,7 @@
 <p>You can install the development version of kuzco like so:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"frankiethull/kuzco"</span><span class="op">)</span></span></code></pre></div>
-<p><strong>kuzco 0.1.0 can be installed from CRAN via `install.packages(“kuzco”)!</strong></p>
+<p><strong>kuzco 0.1.0 can be installed from CRAN via <code>install.packages("kuzco")!</code></strong></p>
 </div>
 <div class="section level2">
 <h2 id="example">Example<a class="anchor" aria-label="anchor" href="#example"></a>
@@ -91,10 +91,9 @@
 <p>here we have an image and want to learn about it:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">test_img</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span>package <span class="op">=</span> <span class="st">"kuzco"</span><span class="op">)</span>, <span class="st">"img/test_img.jpg"</span><span class="op">)</span> </span></code></pre></div>
-<div class="float">
-<img src="https://raw.githubusercontent.com/frankiethull/kuzco/refs/heads/main/inst/img/test_img.jpg" alt="picture of puppy odin circa 2019."><div class="figcaption">picture of puppy odin circa 2019.</div>
-</div>
-<div class="section level3">
+<figure><img src="https://raw.githubusercontent.com/frankiethull/kuzco/refs/heads/main/inst/img/test_img.jpg" alt="picture of puppy odin circa 2019."><figcaption aria-hidden="true">
+picture of puppy odin circa 2019.
+</figcaption></figure><div class="section level3">
 <h3 id="llm-for-image-classification">llm for image classification:<a class="anchor" aria-label="anchor" href="#llm-for-image-classification"></a>
 </h3>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
@@ -104,19 +103,19 @@
 <span><span class="co">#&gt; # A tibble: 1 × 7</span></span>
 <span><span class="co">#&gt;   image_classification primary_object secondary_object image_description        </span></span>
 <span><span class="co">#&gt;   &lt;chr&gt;                &lt;chr&gt;          &lt;chr&gt;            &lt;chr&gt;                    </span></span>
-<span><span class="co">#&gt; 1 pet                  puppy          ""               A close-up of a young pu…</span></span>
+<span><span class="co">#&gt; 1 animal portrait      puppy          ""               A close-up portrait of a…</span></span>
 <span><span class="co">#&gt; # ℹ 3 more variables: image_colors &lt;chr&gt;, image_proba_names &lt;chr&gt;,</span></span>
 <span><span class="co">#&gt; #   image_proba_values &lt;chr&gt;</span></span></code></pre></div>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">llm_results</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; tibble [1 × 7] (S3: tbl_df/tbl/data.frame)</span></span>
-<span><span class="co">#&gt;  $ image_classification: chr "pet"</span></span>
+<span><span class="co">#&gt;  $ image_classification: chr "animal portrait"</span></span>
 <span><span class="co">#&gt;  $ primary_object      : chr "puppy"</span></span>
 <span><span class="co">#&gt;  $ secondary_object    : chr ""</span></span>
-<span><span class="co">#&gt;  $ image_description   : chr "A close-up of a young puppy with a mix of white and brown fur, sitting on a red plaid fabric, possibly a couch or blanket."</span></span>
-<span><span class="co">#&gt;  $ image_colors        : chr "[#CCCCCC, #000000, #CC0000, #FFFFFF, #808080]"</span></span>
-<span><span class="co">#&gt;  $ image_proba_names   : chr "['puppy', 'fabric', 'animal', 'dog breed', 'furry']"</span></span>
-<span><span class="co">#&gt;  $ image_proba_values  : chr "[0.6, 0.15, 0.1, 0.05, 0.05]"</span></span></code></pre></div>
+<span><span class="co">#&gt;  $ image_description   : chr "A close-up portrait of a fluffy, curious-looking puppy with a striking patch on its head. The puppy has a white"| __truncated__</span></span>
+<span><span class="co">#&gt;  $ image_colors        : chr "The image has a palette with shades of white, black, and hints of gray."</span></span>
+<span><span class="co">#&gt;  $ image_proba_names   : chr "puppy, fur texture, eye, coat"</span></span>
+<span><span class="co">#&gt;  $ image_proba_values  : chr "[0.85, 0.10, 0.05, 0.05]"</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="llm-for-image-sentiment">llm for image sentiment:<a class="anchor" aria-label="anchor" href="#llm-for-image-sentiment"></a>
@@ -127,9 +126,9 @@
 <span><span class="va">llm_emotion</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; tibble [1 × 4] (S3: tbl_df/tbl/data.frame)</span></span>
 <span><span class="co">#&gt;  $ image_sentiment      : chr "positive"</span></span>
-<span><span class="co">#&gt;  $ image_score          : num 0.9</span></span>
-<span><span class="co">#&gt;  $ sentiment_description: chr "The adorable and slightly squint-eyed puppy conveys curiosity and an innocent charm, evoking a tender and affec"| __truncated__</span></span>
-<span><span class="co">#&gt;  $ image_keywords       : chr "cute, adorable, curious, innocent, lovable"</span></span></code></pre></div>
+<span><span class="co">#&gt;  $ image_score          : num 0.8</span></span>
+<span><span class="co">#&gt;  $ sentiment_description: chr "The soft, warm lighting and the cute features of the puppy create a feeling of happiness and warmth."</span></span>
+<span><span class="co">#&gt;  $ image_keywords       : chr "cute, friendly, playful, adorable, lovable"</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="llm-for-image-recognition">llm for image recognition:<a class="anchor" aria-label="anchor" href="#llm-for-image-recognition"></a>
@@ -142,10 +141,10 @@
 <span></span>
 <span><span class="va">llm_detection</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; tibble [1 × 4] (S3: tbl_df/tbl/data.frame)</span></span>
-<span><span class="co">#&gt;  $ object_recognized : chr "Nose"</span></span>
-<span><span class="co">#&gt;  $ object_count      : int 0</span></span>
-<span><span class="co">#&gt;  $ object_description: chr "Nose"</span></span>
-<span><span class="co">#&gt;  $ object_location   : chr "top"</span></span></code></pre></div>
+<span><span class="co">#&gt;  $ object_recognized : chr "TRUE"</span></span>
+<span><span class="co">#&gt;  $ object_count      : int 1</span></span>
+<span><span class="co">#&gt;  $ object_description: chr "A black and white puppy nose, slightly pink inside with dark round nostrils."</span></span>
+<span><span class="co">#&gt;  $ object_location   : chr "center"</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="llm-for-image-text-extraction">llm for image text extraction:<a class="anchor" aria-label="anchor" href="#llm-for-image-text-extraction"></a>
@@ -162,9 +161,9 @@
 <span>                                          backend  <span class="op">=</span> <span class="st">"ellmer"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">llm_extract_txt</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; tibble [2 × 2] (S3: tbl_df/tbl/data.frame)</span></span>
-<span><span class="co">#&gt;  $ text            : chr [1:2] "Picture of Odin\nas a puppy\n" "circa Q4 2019"</span></span>
-<span><span class="co">#&gt;  $ confidence_score: num [1:2] 0.95 0.92</span></span></code></pre></div>
+<span><span class="co">#&gt; tibble [1 × 2] (S3: tbl_df/tbl/data.frame)</span></span>
+<span><span class="co">#&gt;  $ text            : chr "Picture of Odin\nas a puppy\ncirca Q4 2019"</span></span>
+<span><span class="co">#&gt;  $ confidence_score: num 0.99</span></span></code></pre></div>
 </div>
 </div>
 <div class="section level2">
@@ -188,9 +187,9 @@
 <span></span>
 <span><span class="va">llm_customized</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; 'data.frame':    1 obs. of  3 variables:</span></span>
-<span><span class="co">#&gt;  $ dog_breed_primary    : chr "Pointer"</span></span>
-<span><span class="co">#&gt;  $ dog_breed_secondary  : chr "Cocker Spaniel"</span></span>
-<span><span class="co">#&gt;  $ dog_breed_information: chr "This image features a puppy with a mottled coat that is likely a mix of Pointer and Cocker Spaniel. Pointers ar"| __truncated__</span></span></code></pre></div>
+<span><span class="co">#&gt;  $ dog_breed_primary    : chr "terrier"</span></span>
+<span><span class="co">#&gt;  $ dog_breed_secondary  : chr "spotted"</span></span>
+<span><span class="co">#&gt;  $ dog_breed_information: chr "The primary breed is likely a terrier based on the facial features and compact size. The secondary breed is 'sp"| __truncated__</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="additional-enhancements">additional enhancements:<a class="anchor" aria-label="anchor" href="#additional-enhancements"></a>

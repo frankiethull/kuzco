@@ -18,7 +18,7 @@ devtools::install_github("frankiethull/kuzco")
 ```
 
 **kuzco 0.1.0 can be installed from CRAN via
-\`install.packages(“kuzco”)!**
+`install.packages("kuzco")!`**
 
 ## Example
 
@@ -51,7 +51,7 @@ llm_results |> tibble::as_tibble()
 #> # A tibble: 1 × 7
 #>   image_classification primary_object secondary_object image_description        
 #>   <chr>                <chr>          <chr>            <chr>                    
-#> 1 pet                  puppy          ""               A close-up of a young pu…
+#> 1 animal portrait      puppy          ""               A close-up portrait of a…
 #> # ℹ 3 more variables: image_colors <chr>, image_proba_names <chr>,
 #> #   image_proba_values <chr>
 ```
@@ -59,13 +59,13 @@ llm_results |> tibble::as_tibble()
 ``` r
 llm_results |> str()
 #> tibble [1 × 7] (S3: tbl_df/tbl/data.frame)
-#>  $ image_classification: chr "pet"
+#>  $ image_classification: chr "animal portrait"
 #>  $ primary_object      : chr "puppy"
 #>  $ secondary_object    : chr ""
-#>  $ image_description   : chr "A close-up of a young puppy with a mix of white and brown fur, sitting on a red plaid fabric, possibly a couch or blanket."
-#>  $ image_colors        : chr "[#CCCCCC, #000000, #CC0000, #FFFFFF, #808080]"
-#>  $ image_proba_names   : chr "['puppy', 'fabric', 'animal', 'dog breed', 'furry']"
-#>  $ image_proba_values  : chr "[0.6, 0.15, 0.1, 0.05, 0.05]"
+#>  $ image_description   : chr "A close-up portrait of a fluffy, curious-looking puppy with a striking patch on its head. The puppy has a white"| __truncated__
+#>  $ image_colors        : chr "The image has a palette with shades of white, black, and hints of gray."
+#>  $ image_proba_names   : chr "puppy, fur texture, eye, coat"
+#>  $ image_proba_values  : chr "[0.85, 0.10, 0.05, 0.05]"
 ```
 
 ### llm for image sentiment:
@@ -76,9 +76,9 @@ llm_emotion <- llm_image_sentiment(llm_model = "qwen2.5vl", image = test_img)
 llm_emotion |> str()
 #> tibble [1 × 4] (S3: tbl_df/tbl/data.frame)
 #>  $ image_sentiment      : chr "positive"
-#>  $ image_score          : num 0.9
-#>  $ sentiment_description: chr "The adorable and slightly squint-eyed puppy conveys curiosity and an innocent charm, evoking a tender and affec"| __truncated__
-#>  $ image_keywords       : chr "cute, adorable, curious, innocent, lovable"
+#>  $ image_score          : num 0.8
+#>  $ sentiment_description: chr "The soft, warm lighting and the cute features of the puppy create a feeling of happiness and warmth."
+#>  $ image_keywords       : chr "cute, friendly, playful, adorable, lovable"
 ```
 
 ### llm for image recognition:
@@ -94,10 +94,10 @@ llm_detection <- llm_image_recognition(llm_model = "qwen2.5vl",
 
 llm_detection |> str()
 #> tibble [1 × 4] (S3: tbl_df/tbl/data.frame)
-#>  $ object_recognized : chr "Nose"
-#>  $ object_count      : int 0
-#>  $ object_description: chr "Nose"
-#>  $ object_location   : chr "top"
+#>  $ object_recognized : chr "TRUE"
+#>  $ object_count      : int 1
+#>  $ object_description: chr "A black and white puppy nose, slightly pink inside with dark round nostrils."
+#>  $ object_location   : chr "center"
 ```
 
 ### llm for image text extraction:
@@ -119,9 +119,9 @@ llm_extract_txt <- llm_image_extract_text(llm_model = "qwen2.5vl",
                                           backend  = "ellmer")
 
 llm_extract_txt |> str()
-#> tibble [2 × 2] (S3: tbl_df/tbl/data.frame)
-#>  $ text            : chr [1:2] "Picture of Odin\nas a puppy\n" "circa Q4 2019"
-#>  $ confidence_score: num [1:2] 0.95 0.92
+#> tibble [1 × 2] (S3: tbl_df/tbl/data.frame)
+#>  $ text            : chr "Picture of Odin\nas a puppy\ncirca Q4 2019"
+#>  $ confidence_score: num 0.99
 ```
 
 ## newer features
@@ -146,9 +146,9 @@ llm_customized <- llm_image_custom(llm_model = "qwen2.5vl",
 
 llm_customized |> str()
 #> 'data.frame':    1 obs. of  3 variables:
-#>  $ dog_breed_primary    : chr "Pointer"
-#>  $ dog_breed_secondary  : chr "Cocker Spaniel"
-#>  $ dog_breed_information: chr "This image features a puppy with a mottled coat that is likely a mix of Pointer and Cocker Spaniel. Pointers ar"| __truncated__
+#>  $ dog_breed_primary    : chr "terrier"
+#>  $ dog_breed_secondary  : chr "spotted"
+#>  $ dog_breed_information: chr "The primary breed is likely a terrier based on the facial features and compact size. The secondary breed is 'sp"| __truncated__
 ```
 
 ### additional enhancements:
