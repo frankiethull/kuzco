@@ -1,6 +1,6 @@
 Package: kuzco
 Title: Computer Vision with Large Language Models
-Version: 0.1.0
+Version: 0.1.0.9000
 Authors@R: c(
     person("Frank", "Hull", , "frankiethull@gmail.com", role = c("aut", "cre", "cph")),
     person("Johannes", "Breuer", , "johannes.breuer@gesis.org", role = c("ctb"), comment = c(ORCID = "0000-0001-5906-7873")),
