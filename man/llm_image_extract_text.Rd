@@ -38,7 +38,7 @@ a df with text and a confidence score
 Image OCR for Text Extraction using LLMs
 }
 \examples{
-\dontrun{
+\donttest{
 llm_image_extract_text(
  llm_model = "qwen2.5vl",
  image = system.file("img/test_img.jpg", package = "kuzco"),

@@ -14,7 +14,7 @@
 #' @returns a customized return based on example_df for custom control
 #' @export
 #' @examples
-#' \dontrun{
+#' \donttest{
 #'
 #' llm_image_custom(
 #'  llm_model = "qwen2.5vl",
@@ -36,6 +36,10 @@ llm_image_custom <- \(
 	provider = "ollama",
 	...
 ) {
+	if (provider == "ollama") {
+		.check_ollama_connection()
+	}
+
 	system_prompt <- system_prompt
 	image_prompt <- image_prompt
 

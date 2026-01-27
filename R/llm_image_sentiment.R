@@ -14,7 +14,7 @@
 #' @returns a df with image_sentiment, image_score, sentiment_description, image_keywords
 #' @export
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' llm_image_sentiment(
 #'  llm_model = "qwen2.5vl",
 #'  image = system.file("img/test_img.jpg", package = "kuzco"),
@@ -33,6 +33,10 @@ llm_image_sentiment <- \(
 	language = "English",
 	...
 ) {
+	if (provider == "ollama") {
+		.check_ollama_connection()
+	}
+
 	system_prompt <- base::readLines(paste0(.libPaths()[1], "/kuzco/prompts/system-prompt-sentiment.md")) |> paste(collapse = "\n")
 	image_prompt <- base::readLines(paste0(.libPaths()[1], "/kuzco/prompts/image-prompt.md")) |> paste(collapse = "\n")
 	image_prompt <- paste0(additional_prompt, image_prompt)

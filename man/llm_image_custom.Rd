@@ -41,7 +41,7 @@ a customized return based on example_df for custom control
 Customized Vision using LLMs
 }
 \examples{
-\dontrun{
+\donttest{
 
 llm_image_custom(
  llm_model = "qwen2.5vl",
@@ -51,5 +51,6 @@ llm_image_custom(
  image_prompt = "return JSON describing image, do not include json or backticks",
  example_df = NULL,
  provider = "ollama"
+)
 }
 }

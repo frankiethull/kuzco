@@ -14,7 +14,7 @@
 #' @returns a df with object_recognized, object_count, object_description, object_location
 #' @export
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' llm_image_recognition(
 #'  llm_model = "qwen2.5vl",
 #'  image = system.file("img/test_img.jpg", package = "kuzco"),
@@ -35,6 +35,10 @@ llm_image_recognition <- \(
 	language = "English",
 	...
 ) {
+	if (provider == "ollama") {
+		.check_ollama_connection()
+	}
+
 	system_prompt <- base::readLines(paste0(.libPaths()[1], "/kuzco/prompts/system-prompt-recognition.md")) |> paste(collapse = "\n")
 	image_prompt <- base::readLines(paste0(.libPaths()[1], "/kuzco/prompts/image-prompt.md")) |> paste(collapse = "\n")
 	image_prompt <- paste0(additional_prompt, image_prompt)

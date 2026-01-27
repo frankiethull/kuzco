@@ -38,7 +38,7 @@ a df with text
 Image Alt Text using LLMs
 }
 \examples{
-\dontrun{
+\donttest{
 llm_image_alt_text(
  llm_model = "qwen2.5vl",
  image = system.file("img/test_img.jpg", package = "kuzco"),

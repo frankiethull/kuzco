@@ -13,7 +13,7 @@
 #' @returns a df with image_classification, primary_object, secondary_object, image_description, image_colors, image_proba_names, image_proba_values
 #' @export
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' llm_image_classification(
 #'  llm_model = "qwen2.5vl",
 #'  image = system.file("img/test_img.jpg", package = "kuzco"),
@@ -32,6 +32,10 @@ llm_image_classification <- \(
 	language = "English",
 	...
 ) {
+	if (provider == "ollama") {
+		.check_ollama_connection()
+	}
+
 	system_prompt <- base::readLines(paste0(.libPaths()[1], "/kuzco/prompts/system-prompt-classification.md")) |>
 		paste(collapse = "\n")
 	image_prompt <- base::readLines(paste0(.libPaths()[1], "/kuzco/prompts/image-prompt.md")) |> paste(collapse = "\n")

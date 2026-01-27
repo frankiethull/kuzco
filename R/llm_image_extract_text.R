@@ -13,7 +13,7 @@
 #' @returns a df with text and a confidence score
 #' @export
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' llm_image_extract_text(
 #'  llm_model = "qwen2.5vl",
 #'  image = system.file("img/test_img.jpg", package = "kuzco"),
@@ -32,6 +32,10 @@ llm_image_extract_text <- \(
 	language = "English",
 	...
 ) {
+	if (provider == "ollama") {
+		.check_ollama_connection()
+	}
+
 	system_prompt <- base::readLines(paste0(.libPaths()[1], "/kuzco/prompts/system-prompt-extraction.md")) |> paste(collapse = "\n")
 	image_prompt <- base::readLines(paste0(.libPaths()[1], "/kuzco/prompts/image-prompt.md")) |> paste(collapse = "\n")
 	image_prompt <- paste0(additional_prompt, image_prompt)

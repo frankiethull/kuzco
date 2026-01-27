@@ -41,7 +41,7 @@ a df with object_recognized, object_count, object_description, object_location
 Image Recognition using LLMs
 }
 \examples{
-\dontrun{
+\donttest{
 llm_image_recognition(
  llm_model = "qwen2.5vl",
  image = system.file("img/test_img.jpg", package = "kuzco"),

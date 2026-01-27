@@ -23,6 +23,7 @@ Imports:
     gtExtras,
     imager,
     jsonlite,
+    magick,
     ollamar,
     rlang,
     stringr,
