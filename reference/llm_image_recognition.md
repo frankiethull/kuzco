@@ -64,7 +64,7 @@ object_location
 ## Examples
 
 ``` r
-# \donttest{
+if (FALSE) { # \dontrun{
 llm_image_recognition(
  llm_model = "qwen2.5vl",
  image = system.file("img/test_img.jpg", package = "kuzco"),
@@ -74,9 +74,5 @@ llm_image_recognition(
 provider = "ollama",
 language = "English"
 )
-#> Ollama local server not running or wrong server.
-#> Download and launch Ollama app to run the server. Visit https://ollama.com or https://github.com/ollama/ollama
-#> Error: Could not connect to the local Ollama server via ollamar::test_connection().
-#> Make sure the Ollama server is running (default: http://localhost:11434).
-# }
+} # }
 ```

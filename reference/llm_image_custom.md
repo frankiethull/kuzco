@@ -62,22 +62,3 @@ llm_image_custom(
 a customized return based on example_df for custom control
 
 ## Examples
-
-``` r
-# \donttest{
-
-llm_image_custom(
- llm_model = "qwen2.5vl",
- image = system.file("img/test_img.jpg", package = "kuzco"),
- backend = "ellmer",
- system_prompt = "You are a terse assistant in computer vision sentiment.",
- image_prompt = "return JSON describing image, do not include json or backticks",
- example_df = NULL,
- provider = "ollama"
-)
-#> Ollama local server not running or wrong server.
-#> Download and launch Ollama app to run the server. Visit https://ollama.com or https://github.com/ollama/ollama
-#> Error: Could not connect to the local Ollama server via ollamar::test_connection().
-#> Make sure the Ollama server is running (default: http://localhost:11434).
-# }
-```

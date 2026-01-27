@@ -35,7 +35,7 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Customized Vision using LLMs</h1>
-      <small class="dont-index">Source: <a href="https://github.com/frankiethull/kuzco/blob/main/R/llm_image_custom.R" class="external-link"><code>R/llm_image_custom.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/frankiethull/kuzco/blob/v0.1.0/R/llm_image_custom.R" class="external-link"><code>R/llm_image_custom.R</code></a></small>
       <div class="d-none name"><code>llm_image_custom.Rd</code></div>
     </div>
 
@@ -102,23 +102,7 @@ from "ollama" to other providers such as "perplexity"</p></dd>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
-<span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="fu">llm_image_custom</span><span class="op">(</span></span></span>
-<span class="r-in"><span> llm_model <span class="op">=</span> <span class="st">"qwen2.5vl"</span>,</span></span>
-<span class="r-in"><span> image <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"img/test_img.jpg"</span>, package <span class="op">=</span> <span class="st">"kuzco"</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span> backend <span class="op">=</span> <span class="st">"ellmer"</span>,</span></span>
-<span class="r-in"><span> system_prompt <span class="op">=</span> <span class="st">"You are a terse assistant in computer vision sentiment."</span>,</span></span>
-<span class="r-in"><span> image_prompt <span class="op">=</span> <span class="st">"return JSON describing image, do not include json or backticks"</span>,</span></span>
-<span class="r-in"><span> example_df <span class="op">=</span> <span class="cn">NULL</span>,</span></span>
-<span class="r-in"><span> provider <span class="op">=</span> <span class="st">"ollama"</span></span></span>
-<span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Ollama local server not running or wrong server.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Download and launch Ollama app to run the server. Visit https://ollama.com or https://github.com/ollama/ollama</span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> Could not connect to the local Ollama server via ollamar::test_connection().</span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> Make sure the Ollama server is running (default: http://localhost:11434).</span>
-<span class="r-in"><span><span class="co"># }</span></span></span>
-</code></pre></div>
+
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside></div>

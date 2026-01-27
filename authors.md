@@ -13,7 +13,7 @@
 ## Citation
 
 Source:
-[`DESCRIPTION`](https://github.com/frankiethull/kuzco/blob/main/DESCRIPTION)
+[`DESCRIPTION`](https://github.com/frankiethull/kuzco/blob/v0.1.0/DESCRIPTION)
 
 Hull F (2026). *kuzco: Computer Vision with Large Language Models*. R
 package version 0.1.0, <https://frankiethull.github.io/kuzco/>.
