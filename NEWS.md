@@ -1,3 +1,6 @@
+# kuzco 0.1.0.9000
+ - add `tool_llm_image_*()` wrappers exposing each computer vision function as an `ellmer::tool()` for chatbot tool calling (#42)
+
 # kuzco 0.1.0
  - initial CRAN release
 # kuzco 0.0.5.9000
