@@ -29,6 +29,32 @@ devtools::install_github("frankiethull/kuzco")
 
 ## Example
 
+### Using kuzco functions as chatbot tools
+
+Each computer vision function has a lite-weight [ellmer](https://ellmer.tidyverse.org/) tool
+wrapper (`tool_llm_image_*()`). Register them on a chat to build agentic image-analysis
+workflows:
+
+``` r
+library(kuzco)
+library(ellmer)
+
+chat <- chat_ollama(model = "qwen2.5vl")
+chat$register_tool(tool_llm_image_classification())
+chat$register_tool(tool_llm_image_extract_text())
+
+chat$chat(
+  "What animal is in this image?",
+  content_image_file("img/photo.jpg")
+)
+```
+
+The wrappers fix `llm_model` and `provider` at registration time and expose only the
+arguments the LLM should control (`image`, `additional_prompt`, `language`, plus
+function-specific ones like `recognize_object`). Results are returned to the model as
+compact JSON text.
+
+
 This is a basic example which shows you how to use kuzco.
 
 ``` r
