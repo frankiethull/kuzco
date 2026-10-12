@@ -14,6 +14,7 @@ extraction, alt-text creation, and **custom** computer vision tasks.
 You can install the development version of kuzco like so:
 
 ``` r
+
 devtools::install_github("frankiethull/kuzco")
 ```
 
@@ -22,9 +23,38 @@ devtools::install_github("frankiethull/kuzco")
 
 ## Example
 
+### Using kuzco functions as chatbot tools
+
+Each computer vision function has a lite-weight
+[ellmer](https://ellmer.tidyverse.org/) tool wrapper
+(`tool_llm_image_*()`). Register them on a chat to build agentic
+image-analysis workflows:
+
+``` r
+
+library(kuzco)
+library(ellmer)
+
+chat <- chat_ollama(model = "qwen2.5vl")
+chat$register_tool(tool_llm_image_classification())
+chat$register_tool(tool_llm_image_extract_text())
+
+chat$chat(
+  "What animal is in this image?",
+  content_image_file("img/photo.jpg")
+)
+```
+
+The wrappers fix `llm_model` and `provider` at registration time and
+expose only the arguments the LLM should control (`image`,
+`additional_prompt`, `language`, plus function-specific ones like
+`recognize_object`). Results are returned to the model as compact JSON
+text.
+
 This is a basic example which shows you how to use kuzco.
 
 ``` r
+
 library(kuzco)
 library(ollamar)
 ```
@@ -32,6 +62,7 @@ library(ollamar)
 here we have an image and want to learn about it:
 
 ``` r
+
 test_img <- file.path(system.file(package = "kuzco"), "img/test_img.jpg") 
 ```
 
@@ -43,10 +74,12 @@ picture of puppy odin circa 2019.
 ### llm for image classification:
 
 ``` r
+
 llm_results <- llm_image_classification(llm_model = "qwen2.5vl", image = test_img)
 ```
 
 ``` r
+
 llm_results |> tibble::as_tibble()
 #> # A tibble: 1 × 7
 #>   image_classification primary_object secondary_object image_description        
@@ -57,6 +90,7 @@ llm_results |> tibble::as_tibble()
 ```
 
 ``` r
+
 llm_results |> str()
 #> tibble [1 × 7] (S3: tbl_df/tbl/data.frame)
 #>  $ image_classification: chr "animal portrait"
@@ -71,6 +105,7 @@ llm_results |> str()
 ### llm for image sentiment:
 
 ``` r
+
 llm_emotion <- llm_image_sentiment(llm_model = "qwen2.5vl", image = test_img)
 
 llm_emotion |> str()
@@ -88,6 +123,7 @@ specify between ‘ollamar’, which suggests structured outputs, while
 ‘ellmer’ enforces structured outputs.
 
 ``` r
+
 llm_detection <- llm_image_recognition(llm_model = "qwen2.5vl", 
                                        image = test_img,
                                        recognize_object = "nose")
@@ -106,6 +142,7 @@ kuzco is also useful for OCR tasks, extracting text from images is
 showcased below:
 
 ``` r
+
 text_img <- file.path(system.file(package = "kuzco"), "img/text_img.jpg") 
 
 text_img |> view_image()
@@ -114,6 +151,7 @@ text_img |> view_image()
 ![](reference/figures/README-unnamed-chunk-8-1.png)
 
 ``` r
+
 llm_extract_txt <- llm_image_extract_text(llm_model = "qwen2.5vl", 
                                           image = text_img,
                                           backend  = "ellmer")
@@ -133,6 +171,7 @@ users to further test computer vision techniques without leaving the
 kuzco boilerplate.
 
 ``` r
+
 llm_customized <- llm_image_custom(llm_model = "qwen2.5vl", 
                                    image = test_img,
                                    system_prompt = "you are a dog breed expert, you know all about dogs. 
@@ -181,6 +220,7 @@ A mistral example below using pixtral-12b, which is still a pretty small
 model. But leverages mistral’s compute, instead of yours.
 
 ``` r
+
 # via base R:
 Sys.setenv(MISTRAL_API_KEY = "the_api_key_via_the_provider")
 # or usethis:
@@ -188,5 +228,6 @@ usethis::edit_r_environ()
 ```
 
 ``` r
+
 kuzco::llm_image_classification(provider = "mistral", llm_model = "pixtral-12b", image = test_img)
 ```

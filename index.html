@@ -12,8 +12,8 @@
 <link rel="icon" sizes="any" href="favicon.ico">
 <link rel="manifest" href="site.webmanifest">
 <script src="deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
-<script src="deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="deps/Space_Mono-0.4.10/font.css" rel="stylesheet">
+<link href="deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet">
+<script src="deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="deps/Space_Mono-0.4.10/font.css" rel="stylesheet">
 <link href="deps/JetBrains_Mono-0.4.10/font.css" rel="stylesheet">
 <link href="deps/Kode_Mono-0.4.10/font.css" rel="stylesheet">
 <link href="deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
@@ -84,21 +84,40 @@
 <div class="section level2">
 <h2 id="example">Example<a class="anchor" aria-label="anchor" href="#example"></a>
 </h2>
-<p>This is a basic example which shows you how to use kuzco.</p>
+<div class="section level3">
+<h3 id="using-kuzco-functions-as-chatbot-tools">Using kuzco functions as chatbot tools<a class="anchor" aria-label="anchor" href="#using-kuzco-functions-as-chatbot-tools"></a>
+</h3>
+<p>Each computer vision function has a lite-weight <a href="https://ellmer.tidyverse.org/" class="external-link">ellmer</a> tool wrapper (<code>tool_llm_image_*()</code>). Register them on a chat to build agentic image-analysis workflows:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://frankiethull.github.io/kuzco/">kuzco</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ellmer.tidyverse.org" class="external-link">ellmer</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">chat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ellmer.tidyverse.org/reference/chat_ollama.html" class="external-link">chat_ollama</a></span><span class="op">(</span>model <span class="op">=</span> <span class="st">"qwen2.5vl"</span><span class="op">)</span></span>
+<span><span class="va">chat</span><span class="op">$</span><span class="fu">register_tool</span><span class="op">(</span><span class="fu"><a href="reference/kuzco-tools.html">tool_llm_image_classification</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">chat</span><span class="op">$</span><span class="fu">register_tool</span><span class="op">(</span><span class="fu"><a href="reference/kuzco-tools.html">tool_llm_image_extract_text</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">chat</span><span class="op">$</span><span class="fu">chat</span><span class="op">(</span></span>
+<span>  <span class="st">"What animal is in this image?"</span>,</span>
+<span>  <span class="fu"><a href="https://ellmer.tidyverse.org/reference/content_image_url.html" class="external-link">content_image_file</a></span><span class="op">(</span><span class="st">"img/photo.jpg"</span><span class="op">)</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+<p>The wrappers fix <code>llm_model</code> and <code>provider</code> at registration time and expose only the arguments the LLM should control (<code>image</code>, <code>additional_prompt</code>, <code>language</code>, plus function-specific ones like <code>recognize_object</code>). Results are returned to the model as compact JSON text.</p>
+<p>This is a basic example which shows you how to use kuzco.</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://frankiethull.github.io/kuzco/">kuzco</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://hauselin.github.io/ollama-r/" class="external-link">ollamar</a></span><span class="op">)</span></span></code></pre></div>
 <p>here we have an image and want to learn about it:</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">test_img</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span>package <span class="op">=</span> <span class="st">"kuzco"</span><span class="op">)</span>, <span class="st">"img/test_img.jpg"</span><span class="op">)</span> </span></code></pre></div>
 <figure><img src="https://raw.githubusercontent.com/frankiethull/kuzco/refs/heads/main/inst/img/test_img.jpg" alt="picture of puppy odin circa 2019."><figcaption aria-hidden="true">
 picture of puppy odin circa 2019.
-</figcaption></figure><div class="section level3">
+</figcaption></figure>
+</div>
+<div class="section level3">
 <h3 id="llm-for-image-classification">llm for image classification:<a class="anchor" aria-label="anchor" href="#llm-for-image-classification"></a>
 </h3>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">llm_results</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/llm_image_classification.html">llm_image_classification</a></span><span class="op">(</span>llm_model <span class="op">=</span> <span class="st">"qwen2.5vl"</span>, image <span class="op">=</span> <span class="va">test_img</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">llm_results</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/llm_image_classification.html">llm_image_classification</a></span><span class="op">(</span>llm_model <span class="op">=</span> <span class="st">"qwen2.5vl"</span>, image <span class="op">=</span> <span class="va">test_img</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">llm_results</span> <span class="op">|&gt;</span> <span class="fu">tibble</span><span class="fu">::</span><span class="fu"><a href="https://tibble.tidyverse.org/reference/as_tibble.html" class="external-link">as_tibble</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 1 × 7</span></span>
 <span><span class="co">#&gt;   image_classification primary_object secondary_object image_description        </span></span>
@@ -106,7 +125,7 @@ picture of puppy odin circa 2019.
 <span><span class="co">#&gt; 1 animal portrait      puppy          ""               A close-up portrait of a…</span></span>
 <span><span class="co">#&gt; # ℹ 3 more variables: image_colors &lt;chr&gt;, image_proba_names &lt;chr&gt;,</span></span>
 <span><span class="co">#&gt; #   image_proba_values &lt;chr&gt;</span></span></code></pre></div>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">llm_results</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; tibble [1 × 7] (S3: tbl_df/tbl/data.frame)</span></span>
 <span><span class="co">#&gt;  $ image_classification: chr "animal portrait"</span></span>
@@ -120,7 +139,7 @@ picture of puppy odin circa 2019.
 <div class="section level3">
 <h3 id="llm-for-image-sentiment">llm for image sentiment:<a class="anchor" aria-label="anchor" href="#llm-for-image-sentiment"></a>
 </h3>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">llm_emotion</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/llm_image_sentiment.html">llm_image_sentiment</a></span><span class="op">(</span>llm_model <span class="op">=</span> <span class="st">"qwen2.5vl"</span>, image <span class="op">=</span> <span class="va">test_img</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">llm_emotion</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="op">)</span></span>
@@ -134,7 +153,7 @@ picture of puppy odin circa 2019.
 <h3 id="llm-for-image-recognition">llm for image recognition:<a class="anchor" aria-label="anchor" href="#llm-for-image-recognition"></a>
 </h3>
 <p>note that the backend of kuzco is flexible as well. This allows users to specify between ‘ollamar’, which suggests structured outputs, while ‘ellmer’ enforces structured outputs.</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">llm_detection</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/llm_image_recognition.html">llm_image_recognition</a></span><span class="op">(</span>llm_model <span class="op">=</span> <span class="st">"qwen2.5vl"</span>, </span>
 <span>                                       image <span class="op">=</span> <span class="va">test_img</span>,</span>
 <span>                                       recognize_object <span class="op">=</span> <span class="st">"nose"</span><span class="op">)</span></span>
@@ -150,12 +169,12 @@ picture of puppy odin circa 2019.
 <h3 id="llm-for-image-text-extraction">llm for image text extraction:<a class="anchor" aria-label="anchor" href="#llm-for-image-text-extraction"></a>
 </h3>
 <p>kuzco is also useful for OCR tasks, extracting text from images is showcased below:</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">text_img</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span>package <span class="op">=</span> <span class="st">"kuzco"</span><span class="op">)</span>, <span class="st">"img/text_img.jpg"</span><span class="op">)</span> </span>
 <span></span>
 <span><span class="va">text_img</span> <span class="op">|&gt;</span> <span class="fu"><a href="reference/view_image.html">view_image</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><img src="reference/figures/README-unnamed-chunk-8-1.png" width="100%"></p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">llm_extract_txt</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/llm_image_extract_text.html">llm_image_extract_text</a></span><span class="op">(</span>llm_model <span class="op">=</span> <span class="st">"qwen2.5vl"</span>, </span>
 <span>                                          image <span class="op">=</span> <span class="va">text_img</span>,</span>
 <span>                                          backend  <span class="op">=</span> <span class="st">"ellmer"</span><span class="op">)</span></span>
@@ -173,7 +192,7 @@ picture of puppy odin circa 2019.
 <h3 id="llm-image-customization">llm image customization:<a class="anchor" aria-label="anchor" href="#llm-image-customization"></a>
 </h3>
 <p>a new feature in kuzco, is a fully customizable function. This allows users to further test computer vision techniques without leaving the kuzco boilerplate.</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">llm_customized</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/llm_image_custom.html">llm_image_custom</a></span><span class="op">(</span>llm_model <span class="op">=</span> <span class="st">"qwen2.5vl"</span>, </span>
 <span>                                   image <span class="op">=</span> <span class="va">test_img</span>,</span>
 <span>                                   system_prompt <span class="op">=</span> <span class="st">"you are a dog breed expert, you know all about dogs. </span></span>
@@ -205,12 +224,12 @@ picture of puppy odin circa 2019.
 <p>kuzco now supports all LLM providers that are supported by <code>ellmer</code>! That’s correct, you can now send images to Perplexity, Claude, OpenAI, Gemini, the list goes on. This defaults to “ollama” to maintain the original workflows.</p>
 <p><em>Cloud-hosted LLMs generally offer greater speed and more advanced capabilities, but require users to obtain an API key since inference is handled remotely. While some providers offer a free tier with usage limits, others do not. Keep in mind that using a cloud-hosted LLM comes with less privacy compared to running a model locally, but it enables access to powerful, cutting-edge models. To get started, users should set up their API key in their environment and select a provider-hosted model that supports image processing.</em></p>
 <p>A mistral example below using pixtral-12b, which is still a pretty small model. But leverages mistral’s compute, instead of yours.</p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># via base R:</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/Sys.setenv.html" class="external-link">Sys.setenv</a></span><span class="op">(</span>MISTRAL_API_KEY <span class="op">=</span> <span class="st">"the_api_key_via_the_provider"</span><span class="op">)</span></span>
 <span><span class="co"># or usethis:</span></span>
 <span><span class="fu">usethis</span><span class="fu">::</span><span class="fu">edit_r_environ</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">kuzco</span><span class="fu">::</span><span class="fu"><a href="reference/llm_image_classification.html">llm_image_classification</a></span><span class="op">(</span>provider <span class="op">=</span> <span class="st">"mistral"</span>, llm_model <span class="op">=</span> <span class="st">"pixtral-12b"</span>, image <span class="op">=</span> <span class="va">test_img</span><span class="op">)</span></span></code></pre></div>
 </div>
 </div>
@@ -260,7 +279,7 @@ picture of puppy odin circa 2019.
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.1.</p>
 </div>
 
     </footer>

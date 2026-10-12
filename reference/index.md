@@ -6,6 +6,13 @@
   : chat ellmer helper (predates ellmer::chat)
 - [`edit_prompt()`](https://frankiethull.github.io/kuzco/reference/edit_prompt.md)
   : edit prompt
+- [`tool_llm_image_alt_text()`](https://frankiethull.github.io/kuzco/reference/kuzco-tools.md)
+  [`tool_llm_image_classification()`](https://frankiethull.github.io/kuzco/reference/kuzco-tools.md)
+  [`tool_llm_image_custom()`](https://frankiethull.github.io/kuzco/reference/kuzco-tools.md)
+  [`tool_llm_image_extract_text()`](https://frankiethull.github.io/kuzco/reference/kuzco-tools.md)
+  [`tool_llm_image_recognition()`](https://frankiethull.github.io/kuzco/reference/kuzco-tools.md)
+  [`tool_llm_image_sentiment()`](https://frankiethull.github.io/kuzco/reference/kuzco-tools.md)
+  : ellmer tools for kuzco computer vision functions
 - [`kuzco_app()`](https://frankiethull.github.io/kuzco/reference/kuzco_app.md)
   : shiny kuzco app
 - [`list_prompts()`](https://frankiethull.github.io/kuzco/reference/list_prompts.md)

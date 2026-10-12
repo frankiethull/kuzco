@@ -1,6 +1,7 @@
 # getting-started
 
 ``` r
+
 library(kuzco)
 ```
 
@@ -12,6 +13,7 @@ we have an image within kuzco to get started. But feel free to
 substitute this image with any image of your choice.
 
 ``` r
+
 my_image <- file.path(system.file(package = "kuzco", "img/test_img.jpg"))
 ```
 
@@ -21,6 +23,7 @@ to make things easy, there is a new function in kuzco to see an image,
 `view_image`.
 
 ``` r
+
 my_image |>
   view_image()
 ```
@@ -38,6 +41,7 @@ decide on an llm_image\_\* function to call:
 - llm_image_custom
 
 ``` r
+
  llm_results <- 
    my_image |>
     llm_image_classification(llm_model = "qwen2.5vl")
@@ -48,6 +52,7 @@ decide on an llm_image\_\* function to call:
 easily view the results from kuzco:
 
 ``` r
+
 llm_results |>
   view_llm_results() 
 ```
@@ -58,5 +63,6 @@ in addtion, kuzco has a shiny app implementation within the package. the
 entire workflow above can be ran within a GUI like so:
 
 ``` r
+
 kuzco_app()
 ```

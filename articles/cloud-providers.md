@@ -1,6 +1,7 @@
 # cloud-providers
 
 ``` r
+
 library(kuzco)
 ```
 
@@ -47,6 +48,7 @@ Since cloud providers require an API key, the API key can be set like
 so:
 
 ``` r
+
 # via base R:
 Sys.setenv(MISTRAL_API_KEY = "the_api_key_via_the_provider")
 # or usethis:
@@ -65,6 +67,7 @@ Once you’ve set the environment variable, running computer vision tasks
 becomes straightforward:
 
 ``` r
+
 kuzco::llm_image_classification(provider = "mistral", llm_model = "pixtral-12b", image = test_img)
 ```
 

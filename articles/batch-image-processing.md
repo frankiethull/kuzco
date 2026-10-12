@@ -1,6 +1,7 @@
 # batch-image-processing
 
 ``` r
+
 library(kuzco)
 library(purrr)
 library(mirai)
@@ -30,6 +31,7 @@ setup multiple processes to do so.
 
 ``` r
 
+
 mirai::daemons(20, .compute = "gpu")
 llm_results <- purrr::map(image_files, 
                           purrr::in_parallel(\(img) kuzco::llm_image_classification(image = img)))
@@ -45,11 +47,13 @@ want to run multiple models. Below showcases a simple way to leverage
 multiple functions for one image.
 
 ``` r
+
 odin <- system.file("img/test_img.jpg", package = "kuzco")
 kuzco::view_image(odin)
 ```
 
 ``` r
+
 
 vision_workflow <- \(img){
   
@@ -87,6 +91,7 @@ and look for a particular object within the image. This is showcased
 below:
 
 ``` r
+
 # Written by Mete Akcaoglu, edited by Frank Hull
 # https://github.com/meteakca
 # https://github.com/frankiethull/kuzco/issues/22#issuecomment-2957159732
@@ -134,6 +139,7 @@ Using parallelized processes via mirai & purrr’s new `in_parallel`
 function.
 
 ``` r
+
 tictoc::tic()
 mirai::daemons(20, .compute = "gpu")
 results_df <- map_dfr(image_files, 
@@ -145,6 +151,7 @@ tictoc::toc()
 Lastly, crossing images & functions using mirai may be of use.
 
 ``` r
+
 tictoc::tic()
 image_tasks <- list(classify  = kuzco::llm_image_classification,
                     sentiment = kuzco::llm_image_sentiment

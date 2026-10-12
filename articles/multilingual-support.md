@@ -1,6 +1,7 @@
 # multilingual-support
 
 ``` r
+
 library(kuzco)
 test_img <- file.path(system.file(package = "kuzco"), "img/test_img.jpg") 
 ```
@@ -16,6 +17,7 @@ straightforward & easy to implement.
 #### English Results
 
 ``` r
+
 llm_image_classification(
   llm_model = "qwen2.5vl", 
   image = test_img, 
@@ -26,6 +28,7 @@ llm_image_classification(
 ```
 
 ``` r
+
 #>   image_classification primary_object secondary_object
 #> 1  Portrait of a puppy          puppy                 
 #>                                                                                                          image_description
@@ -39,6 +42,7 @@ llm_image_classification(
 #### Spanish Results
 
 ``` r
+
 llm_image_classification(
   llm_model = "qwen2.5vl", 
   image = test_img, 
@@ -49,6 +53,7 @@ llm_image_classification(
 ```
 
 ``` r
+
 #>   image_classification primary_object secondary_object
 #> 1              perrito        perrito            pañal
 #>                                                                                                                                                                                   image_description
@@ -62,6 +67,7 @@ llm_image_classification(
 #### German Results
 
 ``` r
+
 llm_image_classification(
   llm_model = "qwen2.5vl", 
   image = test_img, 
@@ -72,6 +78,7 @@ llm_image_classification(
 ```
 
 ``` r
+
 #>   image_classification primary_object secondary_object
 #> 1         Kinderbetten           Hund                 
 #>                                                           image_description
@@ -87,6 +94,7 @@ llm_image_classification(
 #### Chinese Results
 
 ``` r
+
 llm_image_classification(
   llm_model = "qwen2.5vl", 
   image = test_img, 
@@ -97,6 +105,7 @@ llm_image_classification(
 ```
 
 ``` r
+
 #>   image_classification primary_object secondary_object
 #> 1         pet portrait          puppy                 
 #>                                                  image_description
