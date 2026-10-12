@@ -1,3 +1,6 @@
+# kuzco 0.1.0.9000
+ - add `find_gguf_models()` to scan the machine for GGUF models (magic-byte detection) and resolve Ollama library models to their GGUF blob paths
+
 # kuzco 0.1.0
  - initial CRAN release
 # kuzco 0.0.5.9000

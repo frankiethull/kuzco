@@ -29,6 +29,24 @@ devtools::install_github("frankiethull/kuzco")
 
 ## Example
 
+### Finding local GGUF models
+
+`find_gguf_models()` scans your machine for GGUF model files (by magic bytes, so
+extensionless Ollama blobs are found too) and resolves your Ollama library models
+to their underlying GGUF paths — ready to hand to `llama.cpp`:
+
+``` r
+library(kuzco)
+
+find_gguf_models()
+#> # A data frame: 3 x 5
+#>   name             path                                          size_mb modified            source
+#>   <chr>            <chr>                                           <dbl> <dttm>              <chr>
+#> 1 model.gguf       /home/user/models/model.gguf                    4200. 2026-01-15 10:00:00 disk
+#> 2 qwen2.5vl:latest /home/user/.ollama/models/blobs/sha256-abc123    6000. 2026-02-01 12:00:00 ollama
+```
+
+
 This is a basic example which shows you how to use kuzco.
 
 ``` r
